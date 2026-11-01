@@ -3,12 +3,11 @@ import Base from '../layouts/Base.astro';
 import Crumbs from '../components/Crumbs.astro';
 import SectionHead from '../components/SectionHead.astro';
 import CtaBand from '../components/CtaBand.astro';
-import Text from '../components/Text.astro';
 import { john, site, links } from '../data/site';
 import { breadcrumbs, person } from '../data/schema';
 const crumbs = [{ name: 'About John', href: '/john-v-jayakumar' }];
 ---
-<Base title="John V Jayakumar: AI keynote speaker, trainer and founder of 25X Academy" description="John V Jayakumar (Vincent John Jayakumar) is a Chennai-based AI keynote speaker and trainer, founder of 25X Academy and CEO of Superposition Technologies. Ex-Verizon, 2 US patents, author of The AI-Native Leader." schema={[breadcrumbs(crumbs), person()]}>
+<Base title="John V Jayakumar: AI keynote speaker, trainer and founder of 25X Academy" description="John V Jayakumar (Vincent John Jayakumar) is a Chennai-based AI keynote speaker and trainer, founder of 25X Academy and CEO of Superposition Technologies. Ex-Verizon, US patent holder, author of The AI-Native Leader." schema={[breadcrumbs(crumbs), person()]}>
   <section class="about-hero ink">
     <div class="grid-lines"></div>
     <div class="cursor-glow" data-cursor-glow></div>
@@ -33,10 +32,9 @@ const crumbs = [{ name: 'About John', href: '/john-v-jayakumar' }];
     <div class="container split">
       <SectionHead eyebrow="The story" title="From a stressed 9&#8209;to&#8209;5 to building with AI." />
       <div class="prose" data-reveal>
-        <p>8 years ago, John was an IT professional in a regular 9-to-5: constant stress, very little time for family. He had spent decades in technology, including at Verizon, where he received the CIO Credo Star Award for Performance Excellence and was named on two US patents.</p>
+        <p>8 years ago, John was an IT professional in a regular 9-to-5: constant stress, very little time for family. He had spent decades in technology, including at Verizon, where he received the CIO Credo Star Award for Performance Excellence and was awarded a US patent as co-inventor.</p>
         <p>When AI made it possible for one person to build what used to need a team, John changed course. He started building AI tools and businesses, and teaching others to do the same: live, hands-on and from a blank screen, so people see every step rather than a polished demo.</p>
         <p>Today John runs Superposition Technologies and 25X Academy, speaks on AI leadership, and teaches business owners and professionals across India to put AI to work in their own business.</p>
-        <p class="muted"><Text value="[FILL: anything John wants to add to his story: family, turning point, mission]" /></p>
       </div>
     </div>
   </section>
@@ -62,11 +60,11 @@ const crumbs = [{ name: 'About John', href: '/john-v-jayakumar' }];
         <div class="card" data-reveal>
           <h3>Find John online</h3>
           <ul class="ticks">
-            <li>LinkedIn: <Text value={site.social.linkedin} /></li>
-            <li>YouTube: <Text value={site.social.youtube} /></li>
+            <li>LinkedIn: <a href={site.social.linkedin} rel="noopener me">linkedin.com/in/johnvjayakumar</a></li>
+            <li>YouTube: <a href={site.social.youtube} rel="noopener me">youtube.com/@johnvj</a></li>
+            <li>Instagram: <a href={site.social.instagram} rel="noopener me">instagram.com/johnvjayakumar</a></li>
             <li>The Future Simulator: <a href={links.futureSimulator} rel="noopener">thefuturesimulator.com</a></li>
-            <li>Patents: <Text value="[FILL: US patent numbers with Google Patents links]" /></li>
-            <li>Books: <Text value="[FILL: Amazon author page or book links]" /></li>
+            <li>US Patent <a href="https://patents.google.com/patent/US9525755B2/en" rel="noopener">9,525,755</a>: Providing content based on user bandwidth (Verizon, 2016)</li>
           </ul>
         </div>
       </div>

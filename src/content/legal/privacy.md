@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last updated:** [FILL: publish date]
+**Last updated:** 2 November 2026
 
 This policy explains what personal data 25X Academy collects, why, who we share it with, how long we keep it, and how you can control it. We've written it in plain English. If anything is unclear, write to us at hi@25xacademy.com.
 

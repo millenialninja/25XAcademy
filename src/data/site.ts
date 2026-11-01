@@ -22,15 +22,15 @@ export const site = {
   postalCode: '600020',
   gstin: '33ADTPJ7011Q1Z2',
   grievanceOfficer: 'V John Jayakumar',
-  founded: FILL('year founded'),
+  founded: '2020',
   // What "25X" stands for. Shown on the homepage and About page.
   meaning:
     '25X is about leverage: one person, working with AI, doing the work that used to need a whole team.',
+  // Add whatsappChannel here when the channel exists.
   social: {
-    linkedin: FILL('LinkedIn profile URL'),
-    youtube: FILL('YouTube channel URL'),
-    instagram: FILL('Instagram URL'),
-    whatsappChannel: FILL('WhatsApp channel URL'),
+    linkedin: 'https://www.linkedin.com/in/johnvjayakumar/',
+    youtube: 'https://www.youtube.com/@johnvj',
+    instagram: 'https://www.instagram.com/johnvjayakumar/',
   },
 };
 
@@ -101,7 +101,7 @@ export const john = {
   ],
   credentials: [
     'Ex-Verizon, CIO Credo Star Award for Performance Excellence',
-    '2 US patents',
+    'US patent holder (Verizon)',
     'Author of The AI-Native Leader, and 4+ books',
     'CEO, Superposition Technologies',
     'Keynote speaker and AI trainer',

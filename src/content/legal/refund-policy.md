@@ -1,6 +1,6 @@
 # Refund and Cancellation Policy
 
-**Last updated:** [FILL: publish date]
+**Last updated:** 2 November 2026
 
 This policy explains when you can get a refund for a 25X Academy program, how to ask for one, and how long it takes. It's part of our [Terms of Service](/terms). Please read it before you pay. Every checkout page links here.
 

@@ -1,6 +1,6 @@
 # Terms of Service
 
-**Last updated:** [FILL: publish date]
+**Last updated:** 2 November 2026
 
 These terms are the agreement between you and 25X Academy when you use our websites or buy one of our programs. Please read them before you pay. Our [Privacy Policy](/privacy) and [Refund Policy](/refund-policy) are part of these terms.
 

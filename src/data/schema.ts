@@ -21,6 +21,7 @@ export function organization() {
     telephone: real(site.phone),
     legalName: real(site.legalName),
     address: { '@type': 'PostalAddress', streetAddress: site.street, postalCode: site.postalCode, addressLocality: 'Chennai', addressRegion: 'Tamil Nadu', addressCountry: 'IN' },
+    foundingDate: real(site.founded),
     founder: { '@id': johnId },
     areaServed: ['IN', 'SG', 'MY'],
     knowsAbout: ['Artificial intelligence for business', 'Vibe coding', 'No-code AI app building', 'Prompt engineering', 'Lead generation tools'],
