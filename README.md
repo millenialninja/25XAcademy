@@ -12,7 +12,7 @@ npm run preview    # serves dist/ exactly as it will run in production
 npm run placeholders   # lists every [FILL] / [DECISION] still open
 ```
 
-Needs Node 22.23 or newer.
+Needs Node 22.23 or newer (Node 24 recommended).
 
 ## Where things live
 
@@ -40,7 +40,7 @@ Unfilled placeholders show on the page with a yellow striped highlight, so none 
 1. Push this folder to the GitHub repo `millenialninja/25XAcademy`.
 2. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → pick the repo.
 3. Build settings: framework preset **Astro**, build command `npm run build`, output directory `dist`.
-4. Environment variable: `NODE_VERSION` = `22`.
+4. Environment variable: `NODE_VERSION` = `24` (the version the site is built and tested with locally).
 5. Deploy. Check the `*.pages.dev` preview link.
 6. When ready to go live: Pages project → **Custom domains** → add `25xacademy.com` and `www.25xacademy.com`. Cloudflare swaps the DNS records from the old Lovable site to Pages.
    - **Don't touch** `app.25xacademy.com` (TagMango) or the MX/TXT records (Google Workspace email).
