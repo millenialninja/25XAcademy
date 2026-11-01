@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { links } from '../../data/site';
+import { workshopDays } from '../../data/programs';
+import { breadcrumbs, course, faqPage } from '../../data/schema';
+const path = '/programs/business-tools-workshop';
+const crumbs = [{ name: 'Programs', href: '/programs' }, { name: '3-Day Workshop', href: path }];
+const qa = [
+  { q: 'When is the workshop?', a: 'A new batch runs every week, Monday to Wednesday, 7:30 to 8:30 PM IST, live on Zoom. Check vibecoding77.com for the next dates.' },
+  { q: 'How much does it cost?', a: '₹99 for all 3 evenings, including GST. It is a one-time payment, not per day.' },
+  { q: 'Will there be a recording?', a: 'No. This is a hands-on session, and you get the most from it by being there live. No recordings are shared, so please block all 3 evenings.' },
+  { q: 'What do I need?', a: 'A laptop with stable internet, Zoom installed, and one question your customers always ask you before they buy.' },
+  { q: 'Is there a paid program after?', a: 'Yes, and it is completely optional. At the end of Day 3, John shares BuildAlong Hub, a 12-week program. The workshop is complete on its own.' },
+];
+const bonuses = ['Fix-It Prompt Sheet', 'First 10 Leads Share Kit', 'Lead Follow-up Scripts', 'Launch Checklist'];
+---
+<Base title="3-Day Business Tools Workshop (₹99): build a lead tool with AI" description="3 live evenings on Zoom, 1 hour each, ₹99 for all 3. Watch John V Jayakumar build a working lead tool from a blank screen with AI, no coding, then plan one for your own business."
+  schema={[breadcrumbs(crumbs), course({ name: '3-Day Business Tools Workshop', description: 'Three live evenings on Zoom where John V Jayakumar builds a working lead tool with AI from a blank screen, and attendees plan their own.', path, price: '99', workload: 'PT3H' }), faqPage(qa)]}>
+  <PageHero crumbs={crumbs} eyebrow="Step 01 · ₹99" title="Build your own <span class='serif accent'>business tools</span> with AI." lead="3 evenings. 1 hour each. Watch a working lead tool being built live from a blank screen, with no coding. Then plan one for your own business.">
+    <div class="btn-row">
+      <a class="btn" href={links.workshop} data-magnetic>Register for ₹99 <span class="arrow">→</span></a>
+      <span class="chip">Mon to Wed · 7:30 to 8:30 PM IST · Zoom</span>
+    </div>
+  </PageHero>
+  <section class="section">
+    <div class="container">
+      <SectionHead eyebrow="The 3 evenings" title="Three evenings. <span class='serif'>One build.</span>" />
+      <div class="grid grid-3" style="margin-top:48px">
+        {workshopDays.map((d) => (
+          <article class="card day" data-reveal>
+            <span class="chip chip--hot">{d.day}</span>
+            <h3>{d.title}</h3>
+            <ul>{d.points.map((p) => <li>{p}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section--tight ink">
+    <div class="container">
+      <SectionHead eyebrow="Stay till the end of Day 3" title="Four bonuses, only for people in the room." />
+      <div class="grid grid-4" style="margin-top:40px">
+        {bonuses.map((b, i) => <div class="card" data-reveal><span class="eyebrow">Bonus {i + 1}</span><h3 style="margin-top:12px">{b}</h3></div>)}
+      </div>
+    </div>
+  </section>
+  <section class="section paper-2">
+    <div class="container narrow">
+      <SectionHead eyebrow="FAQ" title="Before you register" />
+      <div style="margin-top:36px"><Faq items={qa} /></div>
+    </div>
+  </section>
+  <CtaBand title="Your seat is ₹99 for all 3 evenings." text="Registration and payment happen on vibecoding77.com. You get the Zoom link by email and WhatsApp." />
+</Base>
+<style>
+  .day { display: grid; gap: 14px; align-content: start; }
+  .day .chip { justify-self: start; }
+  .day ul { margin: 0; padding-left: 1.1em; color: var(--text-muted); display: grid; gap: 8px; }
+  .day li::marker { color: var(--saffron); }
+</style>

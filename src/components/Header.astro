@@ -1,0 +1,24 @@
+---
+import BrandMark from './BrandMark.astro';
+import { nav, links } from '../data/site';
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
+const isActive = (href: string) => path === href || path.startsWith(href + '/');
+---
+<header class="site-header" data-header>
+  <div class="bar">
+    <a class="brand" href="/" aria-label="25X Academy home"><BrandMark />25X Academy</a>
+    <nav class="nav" aria-label="Main">
+      {nav.map((n) => <a href={n.href} aria-current={isActive(n.href) ? 'page' : undefined}>{n.label}</a>)}
+    </nav>
+    <a class="btn btn--sm header-cta" href={links.workshop} data-magnetic>Join the ₹99 workshop</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-btn>
+      <span class="sr-only">Menu</span>
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7h14M3 13h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+    </button>
+  </div>
+</header>
+<div class="mobile-nav" id="mobile-nav" data-mobile-nav>
+  {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+  <a href="/contact">Contact</a>
+  <a class="btn" href={links.workshop}>Join the ₹99 workshop <span class="arrow">→</span></a>
+</div>

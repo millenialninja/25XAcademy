@@ -1,0 +1,75 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { hubPhases, buildNight } from '../../data/programs';
+import { breadcrumbs, course } from '../../data/schema';
+const path = '/programs/buildalong-hub';
+const crumbs = [{ name: 'Programs', href: '/programs' }, { name: 'BuildAlong Hub', href: path }];
+const tiers = [
+  { name: 'Builder', who: 'Build one product or tool, with a year of support.', items: ['The 12-week build program', 'Thursday Build Nights for 12 months', '1 product built with John’s support', 'Community and support for 12 months'] },
+  { name: 'Diamond Lifetime', who: 'Keep building, product after product.', items: ['Everything in Builder', 'Thursday Build Nights for life', 'Unlimited products, re-run the 12 weeks for each', 'Community and support for life'] },
+];
+---
+<Base title="BuildAlong Hub: build your product with AI in 12 weeks" description="BuildAlong Hub is a 12-week program where you build your own business tool or product with AI, with John V Jayakumar and a live Build Night every Thursday."
+  schema={[breadcrumbs(crumbs), course({ name: 'BuildAlong Hub', description: 'A 12-week program to build your own business tool or product with AI, with recorded modules, weekly milestones and a live Thursday Build Night.', path, workload: 'P12W' })]}>
+  <PageHero crumbs={crumbs} eyebrow="Step 02 · 12 weeks" title="Build your <span class='serif accent'>own</span> product, alongside John." lead="A recorded module and one clear milestone each week, and a live Build Night every Thursday where you get unstuck on screen. From idea to real users in 12 weeks." />
+
+  <section class="section">
+    <div class="container">
+      <SectionHead eyebrow="The 12 weeks" title="Five phases. <span class='serif'>One product.</span>" />
+      <div class="phases">
+        {hubPhases.map((p, i) => (
+          <div class="phase" data-reveal>
+            <span class="phase-n">0{i + 1}</span>
+            <div><p class="phase-w">{p.weeks}</p><h3>{p.title}</h3><p class="muted">{p.detail}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section ink">
+    <div class="container split">
+      <SectionHead eyebrow="Every Thursday" title="Build Night: about two hours, live." lead="All active members join the same Build Night, wherever they are in the 12 weeks." />
+      <ol class="night">
+        {buildNight.map((b) => <li data-reveal><b>{b.min}</b><span>{b.title}</span></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHead eyebrow="Two ways to join" title="Builder or Diamond Lifetime." lead="Founding-member pricing for the first 1,000 members is shared live at the end of the 3-Day Business Tools Workshop." />
+      <div class="grid grid-2" style="margin-top:48px">
+        {tiers.map((t, i) => (
+          <article class:list={['card', 'tier', i === 1 && 'tier--hot']} data-reveal>
+            <h3>{t.name}</h3>
+            <p class="muted">{t.who}</p>
+            <ul>{t.items.map((x) => <li>{x}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand title="The way in is the 3-Day Workshop." text="BuildAlong Hub opens to workshop attendees. Join the next ₹99 workshop to see how it works and meet John first." />
+</Base>
+<style>
+  .phases { margin-top: 56px; display: grid; gap: 0; }
+  .phase { display: grid; grid-template-columns: 80px 1fr; gap: 20px; padding: 30px 0; border-top: 1px solid var(--line); }
+  .phase-n { font: 800 2.4rem/1 var(--f-display); color: var(--saffron); letter-spacing: -0.05em; }
+  .phase-w { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+  .phase h3 { font-size: clamp(1.4rem, 2.6vw, 2rem); margin-top: 6px; }
+  .phase .muted { margin-top: 8px; max-width: 44rem; }
+  .night { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .night li { display: flex; gap: 20px; align-items: baseline; padding: 20px 24px; background: var(--ink-2); border-radius: 18px; border: 1px solid var(--line-inv); }
+  .night b { font: 800 1.4rem var(--f-display); color: var(--saffron); min-width: 4.5em; }
+  .tier { display: grid; gap: 14px; align-content: start; }
+  .tier h3 { font-size: 2rem; }
+  .tier ul { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .tier li { padding-left: 28px; position: relative; }
+  .tier li::before { content: '✓'; position: absolute; left: 0; color: var(--saffron); font-weight: 800; }
+  .tier--hot { background: var(--ink); color: var(--paper); }
+  .tier--hot .muted { color: var(--text-inv-muted); }
+</style>

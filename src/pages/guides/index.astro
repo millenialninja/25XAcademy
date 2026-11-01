@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getGuides } from '../../data/guides';
+import { breadcrumbs } from '../../data/schema';
+const guides = await getGuides();
+const crumbs = [{ name: 'Guides', href: '/guides' }];
+---
+<Base title="Guides: AI for your business, in plain English" description="Free, plain-English guides for business owners and professionals in India: vibe coding, business tools, leads, prompting and the DPDP Act." schema={[breadcrumbs(crumbs)]}>
+  <PageHero crumbs={crumbs} eyebrow="Free guides" title="Straight answers about <span class='serif accent'>AI</span> for your business." lead="Every guide starts with the short answer, then shows you how. Written by John V Jayakumar and the 25X Academy team." />
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3">
+        {guides.map((g) => (
+          <a class="card guide" href={`/guides/${g.slug}`} data-reveal>
+            <span class="chip">{g.category} · {g.readMinutes} min</span>
+            <h2>{g.title}</h2>
+            <p class="muted">{g.description}</p>
+            <span class="link-arrow">Read the guide <span>→</span></span>
+          </a>
+        ))}
+      </div>
+      <p class="muted" style="margin-top:40px">More guides are on the way: costs of building an AI tool in India, choosing an AI builder, selling a tool as a product, and more.</p>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>
+  .guide { display: flex; flex-direction: column; gap: 14px; min-height: 300px; }
+  .guide h2 { font-size: 1.45rem; letter-spacing: -0.02em; line-height: 1.15; }
+  .guide .chip { align-self: flex-start; }
+  .guide .link-arrow { margin-top: auto; align-self: flex-start; }
+</style>

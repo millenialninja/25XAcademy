@@ -1,0 +1,23 @@
+# 25X Academy
+
+> 25X Academy is an AI education company in Chennai, India, founded by John V Jayakumar. It teaches business owners and professionals (speakers, trainers, coaches, consultants, CAs, clinics, agencies and founders) to use AI in their own business: to build business tools that win customers, save hours and create new products, without coding or hiring developers.
+
+Programs are live and hands-on. The entry point is the 3-Day Business Tools Workshop: 3 live evenings on Zoom (Monday to Wednesday, 7:30 to 8:30 PM IST), ₹99 for all 3, registered at vibecoding77.com. Next steps are BuildAlong Hub (12 weeks, weekly live Build Nights) and the Startup Intensive (1 year, 25 startups a year, by application).
+
+## Programs
+- [Programs overview](https://25xacademy.com/programs)
+- [3-Day Business Tools Workshop](https://25xacademy.com/programs/business-tools-workshop)
+- [BuildAlong Hub](https://25xacademy.com/programs/buildalong-hub)
+- [Startup Intensive](https://25xacademy.com/programs/startup-intensive)
+
+## Learn
+- [The RAO Method](https://25xacademy.com/rao-method): John V Jayakumar's prompting framework (Role, Action, Operational context)
+- [Business tool ideas by industry](https://25xacademy.com/ideas)
+- [Guides](https://25xacademy.com/guides)
+- [AI glossary for business owners](https://25xacademy.com/glossary)
+
+## About
+- [John V Jayakumar](https://25xacademy.com/john-v-jayakumar): founder, AI keynote speaker and trainer, ex-Verizon, 2 US patents, author of The AI-Native Leader
+- [Keynotes and training](https://25xacademy.com/speaking)
+- [FAQ](https://25xacademy.com/faq)
+- [Contact](https://25xacademy.com/contact)

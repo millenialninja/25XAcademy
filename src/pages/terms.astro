@@ -1,0 +1,6 @@
+---
+import Legal from '../layouts/Legal.astro';
+import * as doc from '../content/legal/terms.md';
+const html = await doc.compiledContent();
+---
+<Legal title="Terms of Service" description="The terms for using 25X Academy's websites and programs: prices, live sessions, access, your tools, our materials and disputes." path="/terms" html={html} />

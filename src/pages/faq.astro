@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faqs } from '../data/programs';
+import { breadcrumbs, faqPage } from '../data/schema';
+const crumbs = [{ name: 'FAQ', href: '/faq' }];
+---
+<Base title="FAQ: 25X Academy programs, AI and business tools" description="Answers to common questions about 25X Academy: what we teach, who it’s for, coding, recordings, refunds and where to start." schema={[breadcrumbs(crumbs), faqPage(faqs)]}>
+  <PageHero crumbs={crumbs} eyebrow="FAQ" title="Questions, <span class='serif accent'>answered</span>." lead="Can't find your answer? Email hi@25xacademy.com." />
+  <section class="section"><div class="container narrow"><Faq items={faqs} /></div></section>
+  <CtaBand />
+</Base>

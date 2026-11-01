@@ -1,0 +1,22 @@
+---
+import XDeco from './XDeco.astro';
+import { links } from '../data/site';
+interface Props { title?: string; text?: string }
+const {
+  title = 'Start this week. 3 evenings, 1 hour each.',
+  text = 'Watch a working business tool being built live, from a blank screen, and plan one for your own business. ₹99 for all 3 evenings.',
+} = Astro.props;
+---
+<section class="section--tight">
+  <div class="container">
+    <div class="cta-band" data-reveal>
+      <XDeco class="x-deco" />
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <div class="btn-row">
+        <a class="btn btn--dark" href={links.workshop} data-magnetic>Register for ₹99 <span class="arrow">→</span></a>
+        <a class="link-arrow" href="/programs">See all programs</a>
+      </div>
+    </div>
+  </div>
+</section>

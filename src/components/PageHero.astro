@@ -1,0 +1,15 @@
+---
+import Crumbs from './Crumbs.astro';
+interface Props { eyebrow?: string; title: string; lead?: string; crumbs: { name: string; href: string }[]; tone?: 'ink' | 'paper' }
+const { eyebrow, title, lead, crumbs, tone = 'ink' } = Astro.props;
+---
+<section class:list={['page-hero', tone === 'ink' && 'ink']}>
+  {tone === 'ink' && <><div class="grid-lines"></div><div class="cursor-glow" data-cursor-glow></div><div class="glow" style="width:640px;height:640px;right:-220px;top:-260px"></div></>}
+  <div class="container" style="position:relative">
+    <Crumbs items={crumbs} />
+    {eyebrow && <span class="eyebrow" data-reveal="fade">{eyebrow}</span>}
+    <h1 data-split set:html={title} />
+    {lead && <p class="lead" data-reveal>{lead}</p>}
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,483 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Text from '../components/Text.astro';
+import IdeaCard from '../components/IdeaCard.astro';
+import XDeco from '../components/XDeco.astro';
+import { site, links, john } from '../data/site';
+import { programs, faqs } from '../data/programs';
+import { ideas } from '../data/ideas';
+import { faqPage } from '../data/schema';
+import { getGuides } from '../data/guides';
+
+const guides = (await getGuides()).slice(0, 3);
+
+const tiles = [
+  'Lead scorecard', 'Quote calculator', 'FAQ assistant', 'Follow-up message', 'Proposal draft',
+  'Booking reminder', 'Course finder', 'Invoice summary', 'Client onboarding', 'Social post',
+  'Budget estimator', 'Readiness check', 'Sales script', 'Meeting notes', 'Review request',
+  'Price list', 'WhatsApp reply', 'Market research', 'Email newsletter', 'Training quiz',
+  'Feedback survey', 'Content calendar', 'Lead tracker', 'Product idea', 'Your next tool',
+];
+const toolTypes = ['Growth scorecards', 'Readiness checks', 'Quote calculators', 'Course finders', 'Booking tools', 'Budget estimators', 'Eligibility checks', 'Health scores', 'Quiz funnels', 'Keynote finders'];
+
+const pillars = [
+  { k: 'win', title: 'Win customers', text: 'Lead tools that give every visitor a useful result and hand you their name, WhatsApp number and need.' },
+  { k: 'serve', title: 'Serve faster', text: 'Assistants that answer common questions, qualify enquiries and book calls, day and night.' },
+  { k: 'save', title: 'Save hours', text: 'Automations for proposals, follow-ups, reports and reminders: the work that eats your week.' },
+  { k: 'create', title: 'Create products', text: 'Turn what you know into a tool people pay for: a calculator, a planner, an assessment.' },
+];
+
+const audiences = [
+  { who: 'Speakers', eg: 'A Keynote Finder that turns organisers into booking enquiries.' },
+  { who: 'Trainers', eg: 'A training-needs quiz that HR managers take to their boss.' },
+  { who: 'Coaches', eg: 'A readiness check so discovery calls are with ready clients.' },
+  { who: 'Consultants', eg: 'A growth scorecard that opens every strategy call.' },
+  { who: 'CA and tax firms', eg: 'A GST readiness check that brings clients in early.' },
+  { who: 'Clinics', eg: 'An appointment pre-check that cuts calls and no-shows.' },
+  { who: 'Agencies', eg: 'A website health score that writes your proposal for you.' },
+  { who: 'Founders', eg: 'Version 1 of your product, built and launched with AI.' },
+];
+
+const path = [
+  { tag: 'Free', title: 'Guides and ideas', text: 'Plain-English guides and 13 business tool ideas. Start reading today.', href: '/guides', cta: 'Read the guides' },
+  ...programs.map((p) => ({ tag: p.price, title: p.name, text: p.short, href: `/programs/${p.slug}`, cta: 'Learn more' })),
+];
+---
+<Base
+  title={site.name}
+  description="Learn to put AI to work in your business: build business tools that win customers, save hours and create new products. No coding. Live programs with John V Jayakumar, from a ₹99 3-day workshop."
+  schema={[faqPage(faqs)]}
+>
+  <!-- 1. HERO -->
+  <section class="hero ink" data-hero>
+    <div class="grid-lines"></div>
+    <div class="cursor-glow" data-cursor-glow></div>
+    <div class="glow" style="width:720px;height:720px;right:-200px;top:-180px"></div>
+    <div class="glow glow--lilac" style="width:520px;height:520px;left:-220px;bottom:-200px"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="chip" data-reveal="fade"><span class="dot dot--live"></span>New workshop every week · Mon to Wed · 7:30 PM IST</span>
+        <h1 data-split>Put AI to work in <span class="serif accent">your</span> business.</h1>
+        <p class="lead" data-reveal>Learn to build the business tools that win customers, save hours and create new products. No coding. No developers. Just you, a laptop and AI.</p>
+        <div class="btn-row" data-reveal>
+          <a class="btn" href={links.workshop} data-magnetic>Start with the ₹99 workshop <span class="arrow">→</span></a>
+          <a class="btn btn--ghost" href="/guides">Explore free guides</a>
+        </div>
+        <p class="hero-proof" data-reveal>With <a href="/john-v-jayakumar">John V Jayakumar</a> · 5,000+ people trained in AI · Ex-Verizon · 2 US patents</p>
+      </div>
+
+      <div class="stage" data-stage aria-hidden="true">
+        <div class="tiles">
+          {tiles.map((t, i) => <div class="tile" style={`--i:${i}`}><span>{t}</span></div>)}
+        </div>
+        <i class="beam beam-a" data-beam></i>
+        <i class="beam beam-b" data-beam></i>
+        <div class="stage-counter"><b data-tile-count>25</b><span>tasks, one person, with AI</span></div>
+      </div>
+    </div>
+    <div class="hero-word" aria-hidden="true" data-hero-word>25X</div>
+  </section>
+
+  <!-- Tool types marquee -->
+  <div class="tool-strip" aria-label="Kinds of business tools">
+    <div class="marquee"><div class="marquee-track">
+      {[...toolTypes, ...toolTypes].map((t) => <span class="strip-item">{t}<XDeco class="strip-x" /></span>)}
+    </div></div>
+  </div>
+
+  <!-- 2. THE SHIFT -->
+  <section class="section shift" data-shift>
+    <div class="container split split--even">
+      <div class="shift-copy">
+        <SectionHead eyebrow="The shift" title="Your website <span class='serif'>talks</span>. A business tool <span class='accent'>works</span>." />
+        <ol class="shift-steps">
+          <li data-shift-step="0"><b>Today</b><p>Most business websites are brochures. People read, nod and leave, and you never learn who was interested.</p></li>
+          <li data-shift-step="1"><b>With a tool</b><p>A business tool does something for the visitor: a score, a quote, a recommendation. It's useful, so they finish it.</p></li>
+          <li data-shift-step="2"><b>The result</b><p>They get their answer. You get their name, WhatsApp number and need, while you sleep.</p></li>
+        </ol>
+      </div>
+      <div class="device-wrap">
+        <div class="device" data-device>
+          <div class="device-bar"><i></i><i></i><i></i><span>yourbusiness.in</span></div>
+          <div class="device-body">
+            <div class="state s-brochure" data-state="0">
+              <span class="ph-line w60 tall"></span><span class="ph-line w90"></span><span class="ph-line w80"></span>
+              <span class="ph-img"></span><span class="ph-line w70"></span>
+              <p class="brochure-links"><span>About us</span><span>Services</span><span>Contact us</span></p>
+            </div>
+            <div class="state s-tool" data-state="1">
+              <p class="t-title">Business Growth Scorecard</p>
+              <div class="t-progress"><i style="width:60%"></i></div>
+              <p class="t-q">How do most new customers find you?</p>
+              <div class="t-opts"><span>Referrals</span><span class="on">Instagram and WhatsApp</span><span>Google search</span><span>Walk-ins</span></div>
+              <span class="t-btn">Next question</span>
+            </div>
+            <div class="state s-result" data-state="2">
+              <p class="t-title">Your growth score</p>
+              <div class="r-row">
+                <div class="ring" style="--p:58"><span>58%</span></div>
+                <div class="bars"><i style="--w:72%"></i><i style="--w:61%"></i><i style="--w:38%"></i><i style="--w:55%"></i></div>
+              </div>
+              <p class="r-note">Weakest area: <b>Conversion</b></p>
+              <span class="t-btn">Unlock your full report</span>
+            </div>
+          </div>
+        </div>
+        <div class="toast" data-toast>
+          <span class="toast-ico">✓</span>
+          <div><b>New lead: Priya R., Chennai</b><span>Score 58% · weakest: Conversion</span><em>Demo data</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. FOUR PILLARS -->
+  <section class="section ink pillars">
+    <div class="glow" style="width:600px;height:600px;left:30%;top:-300px;opacity:.25"></div>
+    <div class="container">
+      <SectionHead eyebrow="What AI can do for you" title="Four ways AI earns its place in your business." lead="Not chat for the sake of chat. Tools that do real work, built by you, for your customers and your team." />
+      <div class="grid grid-4 pillar-grid">
+        {pillars.map((p) => (
+          <article class="card pillar" data-reveal>
+            <div class={`p-anim p-${p.k}`} aria-hidden="true">
+              {p.k === 'win' && <><i></i><i></i><i></i><i></i></>}
+              {p.k === 'serve' && <><i></i><i></i><i></i></>}
+              {p.k === 'save' && <><i></i><b></b></>}
+              {p.k === 'create' && <><i></i><i></i><i></i></>}
+            </div>
+            <h3>{p.title}</h3>
+            <p class="muted">{p.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ONE PROMPT, ONE TOOL -->
+  <section class="section paper-2 rao" data-rao>
+    <div class="container split">
+      <div>
+        <SectionHead eyebrow="The RAO method" title="One clear prompt. <span class='serif'>One working tool.</span>" lead="AI builds what you describe, so the skill is describing it well. John's RAO method gives every prompt three parts: a Role, an Action and the Operational context." />
+        <a class="link-arrow" href="/rao-method" style="margin-top:28px">How the RAO method works <span>→</span></a>
+      </div>
+      <div class="rao-demo">
+        <div class="prompt-card">
+          <div class="pc-head"><span class="dot"></span><span class="dot" style="background:var(--lilac)"></span><span class="dot" style="background:var(--mint)"></span><b>Prompt</b></div>
+          <p class="pl pl-r" data-type><em>Role</em><span>You are a product designer building a lead tool for a CA firm in Chennai.</span></p>
+          <p class="pl pl-a" data-type><em>Action</em><span>Build a 6-question GST readiness check that scores the visitor out of 100.</span></p>
+          <p class="pl pl-o" data-type><em>Operational context</em><span>Visitors are small business owners on their phones. Plain English. Ask for name and WhatsApp number before the full result.</span></p>
+        </div>
+        <div class="phone" aria-hidden="true">
+          <div class="phone-notch"></div>
+          <p class="ph-piece ph-t" data-piece>GST readiness check</p>
+          <p class="ph-piece ph-s" data-piece>2 minutes · 6 questions</p>
+          <div class="ph-piece ph-q" data-piece>Are you registered for GST?<span><b class="on">Yes</b><b>No</b></span></div>
+          <div class="ph-piece ph-q" data-piece>Do you file returns on time?<span><b>Yes</b><b class="on">No</b></span></div>
+          <div class="ph-piece ph-q" data-piece>Are invoices made in software?<span><b class="on">Yes</b><b>No</b></span></div>
+          <span class="ph-piece ph-cta" data-piece>See my score</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. WHO IT'S FOR -->
+  <section class="section">
+    <div class="container">
+      <SectionHead eyebrow="Who it's for" title="Built for people who sell what they <span class='serif accent'>know</span>." lead="You don't need to be technical. You need to know your customers. That's the part AI can't do for you." />
+      <div class="grid grid-4 aud-grid">
+        {audiences.map((a) => (
+          <div class="aud" data-reveal>
+            <h3>{a.who}</h3>
+            <p class="muted">{a.eg}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. IDEAS GALLERY -->
+  <section class="ink ideas-band" data-hscroll>
+    <div class="hs-pin">
+      <div class="container hs-head">
+        <SectionHead eyebrow="Ideas by industry" title="One idea, <span class='serif'>many</span> businesses." />
+        <a class="link-arrow" href="/ideas">All {ideas.length} ideas <span>→</span></a>
+      </div>
+      <div class="hs-track" data-hscroll-track>
+        {ideas.map((i) => <IdeaCard idea={i} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. THE 25X PATH -->
+  <section class="section path" data-path>
+    <div class="container">
+      <SectionHead eyebrow="The 25X path" title="Start small. Go as far as you want." lead="Every step stands on its own. Take the next one only when you're ready." />
+      <div class="stairs">
+        {path.map((s, i) => (
+          <a class="stair card" href={s.href} style={`--n:${i}`} data-stair>
+            <span class="stair-n">0{i + 1}</span>
+            <span class="chip">{s.tag}</span>
+            <h3>{s.title}</h3>
+            <p class="muted">{s.text}</p>
+            <span class="link-arrow">{s.cta} <span>→</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. MEET JOHN -->
+  <section class="section ink john">
+    <div class="container split split--even">
+      <div class="john-photo" data-reveal>
+        <img src={john.photo} alt="John V Jayakumar, founder of 25X Academy" width="1400" height="941" loading="lazy" decoding="async" />
+      </div>
+      <div>
+        <SectionHead eyebrow="Your teacher" title="From a stressed 9&#8209;to&#8209;5 IT professional to training <span class='accent'>5,000+</span> people in AI." />
+        <p class="lead" style="margin-top:20px" data-reveal>8 years ago, John was in a regular 9-to-5 IT job, with constant stress and very little time for family. Today he builds AI businesses and teaches others to do the same, live and hands-on, from a blank screen.</p>
+        <div class="stats">
+          {john.stats.map((s) => (
+            <div class="stat" data-reveal><b data-count={s.value} data-suffix={s.suffix}>{s.value.toLocaleString('en-IN')}{s.suffix}</b><span>{s.label}</span></div>
+          ))}
+        </div>
+        <a class="link-arrow" href="/john-v-jayakumar" style="margin-top:32px">John's full story <span>→</span></a>
+      </div>
+    </div>
+    <div class="cred-strip marquee" style="margin-top:72px">
+      <div class="marquee-track" style="animation-duration:55s">
+        {[...john.credentials, ...john.credentials].map((c) => <span class="chip">{c}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. WHY 25X -->
+  <section class="section--tight paper-2 why">
+    <div class="container narrow" style="text-align:center">
+      <span class="eyebrow" data-reveal="fade">Why "25X"</span>
+      <p class="why-text" data-reveal><Text value={site.meaning} /></p>
+    </div>
+  </section>
+
+  <!-- 10. GUIDES -->
+  <section class="section">
+    <div class="container">
+      <div class="row-head">
+        <SectionHead eyebrow="Free guides" title="Straight answers about AI for your business." />
+        <a class="link-arrow" href="/guides">All guides <span>→</span></a>
+      </div>
+      <div class="grid grid-3" style="margin-top:48px">
+        {guides.map((g) => (
+          <a class="card guide-card" href={`/guides/${g.slug}`} data-reveal>
+            <span class="chip">{g.category}</span>
+            <h3>{g.title}</h3>
+            <p class="muted">{g.description}</p>
+            <span class="link-arrow">Read <span>→</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FAQ -->
+  <section class="section paper-2">
+    <div class="container narrow">
+      <SectionHead eyebrow="FAQ" title="Questions, answered." />
+      <div style="margin-top:40px"><Faq items={faqs.slice(0, 6)} /></div>
+      <a class="link-arrow" href="/faq" style="margin-top:28px">All questions <span>→</span></a>
+    </div>
+  </section>
+
+  <!-- 12. CTA -->
+  <CtaBand />
+</Base>
+
+<style>
+  /* Hero */
+  .hero { position: relative; overflow: hidden; min-height: 100svh; padding: 132px 0 80px; display: flex; align-items: center; }
+  .hero-inner { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; align-items: center; z-index: 2; }
+  @media (min-width: 1000px) { .hero-inner { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); } }
+  .hero-copy > .chip { white-space: normal; }
+  .hero h1 { margin-top: 26px; max-width: 11ch; }
+  .hero .lead { margin-top: 26px; max-width: 36rem; }
+  .hero .btn-row { margin-top: 36px; }
+  .hero-proof { margin-top: 30px; font-size: 0.92rem; color: var(--text-inv-muted); }
+  .hero-proof a { color: var(--text-inv); text-decoration-color: var(--saffron); text-underline-offset: 3px; }
+  .hero-word {
+    position: absolute; left: 50%; bottom: -0.2em; transform: translateX(-50%); z-index: 1; pointer-events: none;
+    font: 800 clamp(10rem, 34vw, 30rem)/0.8 var(--f-display); letter-spacing: -0.07em; white-space: nowrap;
+    color: transparent; -webkit-text-stroke: 1px rgba(246, 241, 231, 0.09);
+  }
+
+  .stage { position: relative; aspect-ratio: 1; width: min(100%, 540px); justify-self: center; }
+  .tiles { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; z-index: 2; }
+  .tile {
+    border-radius: 14px; background: rgba(11, 11, 18, 0.62); border: 1px solid rgba(246, 241, 231, 0.1);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    display: grid; place-items: center; padding: 6px; text-align: center;
+    font-size: clamp(0.56rem, 1.1vw, 0.72rem); font-weight: 600; line-height: 1.2; color: rgba(246, 241, 231, 0.85);
+    transition: background 0.6s, border-color 0.6s, color 0.6s;
+  }
+  .tile.lit { background: rgba(30, 18, 12, 0.62); border-color: rgba(255, 122, 26, 0.45); color: var(--text-inv); }
+  .tile:last-child, .tile.lit:last-child { background: var(--saffron); color: var(--ink); border-color: var(--saffron); }
+  .beam {
+    position: absolute; left: -19%; top: calc(50% - 5px); width: 138%; height: 10px; border-radius: 99px; pointer-events: none; z-index: 1;
+    background: linear-gradient(90deg, transparent, rgba(255, 176, 112, 0.9) 18%, #fff 50%, rgba(255, 176, 112, 0.9) 82%, transparent);
+    box-shadow: 0 0 24px 6px rgba(255, 122, 26, 0.55), 0 0 80px 20px rgba(255, 122, 26, 0.25);
+  }
+  .beam-a { transform: rotate(45deg); }
+  .beam-b { transform: rotate(-45deg); }
+  .stage-counter {
+    position: absolute; left: -10px; bottom: -26px; z-index: 3; display: flex; align-items: center; gap: 12px;
+    background: var(--paper); color: var(--ink); border-radius: 18px; padding: 12px 18px; box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+  }
+  .stage-counter b { font: 800 2rem/1 var(--f-display); letter-spacing: -0.04em; color: var(--saffron); min-width: 1.4em; }
+  .stage-counter span { font-size: 0.82rem; font-weight: 600; max-width: 13ch; line-height: 1.25; }
+
+  /* Tool strip */
+  .tool-strip { background: var(--saffron); color: var(--ink); padding: 18px 0; position: relative; z-index: 3; }
+  .strip-item { display: inline-flex; align-items: center; gap: 22px; font: 700 clamp(1.1rem, 2vw, 1.5rem) var(--f-display); letter-spacing: -0.02em; padding-right: 8px; white-space: nowrap; }
+  :global(.strip-x) { width: 16px; height: 16px; }
+
+  /* Shift */
+  .shift .split { align-items: center; }
+  .shift-steps { list-style: none; padding: 0; margin: 40px 0 0; display: grid; gap: 14px; counter-reset: s; }
+  .shift-steps li { padding: 18px 22px; border-radius: 18px; border: 1px solid var(--line); transition: background 0.5s, border-color 0.5s, opacity 0.5s; }
+  .shift-steps li b { font-family: var(--f-display); font-size: 1.1rem; }
+  .shift-steps li p { color: var(--text-muted); margin-top: 4px; }
+  .shift-steps li.active { background: #fffaf2; border-color: transparent; box-shadow: var(--shadow); }
+  .shift-steps li.active b { color: var(--saffron); }
+  .device-wrap { position: relative; padding: 20px 0 60px; }
+  .device { position: relative; background: #fffaf2; border-radius: 26px; box-shadow: 0 50px 100px -40px rgba(11, 11, 18, 0.45), 0 0 0 1px rgba(22, 21, 28, 0.06); overflow: hidden; max-width: 520px; margin: 0 auto; }
+  .device-bar { display: flex; gap: 6px; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .device-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--paper-3); }
+  .device-bar span { margin-left: 12px; font-size: 0.78rem; color: var(--text-muted); background: var(--paper-2); padding: 4px 14px; border-radius: 99px; }
+  .device-body { position: relative; height: 380px; }
+  .state { position: absolute; inset: 0; padding: 30px; display: flex; flex-direction: column; gap: 12px; }
+  .state { opacity: 0; }
+  .state.s-result { opacity: 1; }
+  .ph-line { display: block; height: 10px; border-radius: 9px; background: var(--paper-3); }
+  .ph-line.tall { height: 22px; }
+  .w60 { width: 60%; } .w70 { width: 70%; } .w80 { width: 80%; } .w90 { width: 90%; }
+  .ph-img { display: block; height: 120px; border-radius: 16px; background: var(--paper-2); }
+  .brochure-links { display: flex; gap: 18px; margin-top: auto; font-size: 0.85rem; color: var(--text-muted); text-decoration: underline; }
+  .t-title { font: 700 1.25rem var(--f-display); letter-spacing: -0.02em; }
+  .t-progress { height: 6px; border-radius: 9px; background: var(--paper-2); overflow: hidden; }
+  .t-progress i { display: block; height: 100%; background: var(--saffron); border-radius: inherit; }
+  .t-q { font-weight: 600; margin-top: 6px; }
+  .t-opts { display: grid; gap: 8px; }
+  .t-opts span { padding: 11px 14px; border-radius: 12px; border: 1px solid var(--line); font-size: 0.92rem; }
+  .t-opts span.on { border-color: var(--saffron); background: var(--saffron-soft); font-weight: 600; }
+  .t-btn { margin-top: auto; align-self: stretch; text-align: center; padding: 13px; border-radius: 14px; background: var(--ink); color: var(--paper); font-weight: 600; font-size: 0.95rem; }
+  .r-row { display: flex; gap: 22px; align-items: center; margin-top: 10px; }
+  .r-row .ring { width: 104px; height: 104px; font-size: 1.4rem; }
+  .r-row .ring::before { background: #fffaf2; inset: 10px; }
+  .r-row .bars i { height: 9px; }
+  .r-note { color: var(--text-muted); }
+  .toast {
+    position: absolute; right: 0; bottom: 0; display: flex; gap: 12px; align-items: flex-start; z-index: 3;
+    background: var(--ink); color: var(--paper); border-radius: 18px; padding: 14px 18px; max-width: 300px;
+    box-shadow: 0 30px 60px -20px rgba(11, 11, 18, 0.6);
+  }
+  .toast-ico { width: 30px; height: 30px; border-radius: 50%; background: var(--mint); color: var(--ink); display: grid; place-items: center; font-weight: 800; flex: none; }
+  .toast b { display: block; font-size: 0.92rem; }
+  .toast span { display: block; font-size: 0.8rem; color: var(--text-inv-muted); }
+  .toast em { display: block; font-size: 0.68rem; color: var(--text-inv-muted); opacity: 0.7; margin-top: 2px; }
+
+  /* Pillars */
+  .pillars { overflow: hidden; }
+  .pillar-grid { margin-top: 56px; }
+  .pillar { min-height: 320px; display: flex; flex-direction: column; gap: 12px; }
+  .pillar .p-anim { flex: none; }
+  .p-anim { height: 110px; border-radius: 16px; background: var(--ink-3); position: relative; overflow: hidden; margin-bottom: 18px; }
+  .p-win { display: flex; align-items: flex-end; gap: 10px; padding: 18px 22px; }
+  .p-win i { flex: 1; background: var(--saffron); border-radius: 6px 6px 2px 2px; animation: grow 2.4s var(--ease) infinite alternate; }
+  .p-win i:nth-child(1) { height: 30%; } .p-win i:nth-child(2) { height: 50%; animation-delay: .2s; } .p-win i:nth-child(3) { height: 70%; animation-delay: .4s; } .p-win i:nth-child(4) { height: 95%; animation-delay: .6s; }
+  @keyframes grow { from { transform: scaleY(0.3); transform-origin: bottom; } to { transform: scaleY(1); transform-origin: bottom; } }
+  .p-serve { display: flex; flex-direction: column; gap: 8px; padding: 16px; }
+  .p-serve i { height: 18px; border-radius: 10px; background: rgba(246, 241, 231, 0.14); width: 60%; animation: bubble 3s infinite; }
+  .p-serve i:nth-child(2) { align-self: flex-end; background: var(--saffron); width: 50%; animation-delay: 0.8s; }
+  .p-serve i:nth-child(3) { width: 70%; animation-delay: 1.6s; }
+  @keyframes bubble { 0%, 10% { opacity: 0; transform: translateY(8px); } 25%, 85% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  .p-save i { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px; border-radius: 50%; border: 3px solid rgba(246, 241, 231, 0.2); }
+  .p-save b { position: absolute; left: 50%; top: 50%; width: 3px; height: 30px; margin-left: -1.5px; margin-top: -30px; background: var(--saffron); border-radius: 3px; transform-origin: bottom center; animation: spin 2.5s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .p-create { display: grid; place-items: center; }
+  .p-create i { position: absolute; width: 56px; height: 40px; border-radius: 10px; background: var(--lilac); animation: stack 3s var(--ease) infinite; opacity: 0.9; }
+  .p-create i:nth-child(2) { background: var(--saffron); animation-delay: 0.3s; }
+  .p-create i:nth-child(3) { background: var(--paper); animation-delay: 0.6s; }
+  @keyframes stack { 0% { transform: translateY(60px); opacity: 0; } 30%, 80% { opacity: 1; } 30% { transform: translateY(18px); } 55% { transform: translateY(0); } 100% { transform: translateY(-50px); opacity: 0; } }
+
+  /* RAO */
+  .rao .split { align-items: center; }
+  .rao-demo { position: relative; display: grid; gap: 24px; }
+  @media (min-width: 700px) { .rao-demo { grid-template-columns: 1.2fr 0.8fr; align-items: center; } }
+  .prompt-card { background: var(--ink); color: var(--paper); border-radius: 24px; padding: 24px; box-shadow: 0 40px 80px -30px rgba(11, 11, 18, 0.55); }
+  .pc-head { display: flex; gap: 6px; align-items: center; margin-bottom: 18px; }
+  .pc-head b { margin-left: 8px; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-inv-muted); }
+  .pl { font-size: 0.98rem; line-height: 1.55; padding: 12px 0 12px 16px; border-left: 3px solid; }
+  .pl + .pl { margin-top: 8px; }
+  .pl em { display: block; font-style: normal; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
+  .pl-r { border-color: var(--saffron); } .pl-r em { color: var(--saffron); }
+  .pl-a { border-color: var(--lilac); } .pl-a em { color: var(--lilac); }
+  .pl-o { border-color: var(--mint); } .pl-o em { color: var(--mint); }
+  .pl span.typing::after { content: ''; display: inline-block; width: 2px; height: 1.1em; background: currentColor; vertical-align: -2px; margin-left: 2px; animation: blink 0.8s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .phone { background: var(--paper); border-radius: 34px; padding: 34px 18px 22px; border: 8px solid var(--ink); display: grid; gap: 10px; box-shadow: 0 40px 80px -30px rgba(11, 11, 18, 0.5); max-width: 280px; justify-self: center; position: relative; }
+  .phone-notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 70px; height: 16px; border-radius: 99px; background: var(--ink); }
+  .ph-t { font: 800 1.1rem var(--f-display); letter-spacing: -0.02em; }
+  .ph-s { font-size: 0.75rem; color: var(--text-muted); margin-top: -6px; }
+  .ph-q { font-size: 0.8rem; font-weight: 600; background: #fffaf2; border-radius: 12px; padding: 10px; border: 1px solid var(--line); }
+  .ph-q span { display: flex; gap: 6px; margin-top: 8px; }
+  .ph-q b { font-size: 0.7rem; padding: 4px 12px; border-radius: 99px; background: var(--paper-2); font-weight: 600; }
+  .ph-q b.on { background: var(--saffron); }
+  .ph-cta { text-align: center; padding: 11px; border-radius: 12px; background: var(--ink); color: var(--paper); font-weight: 600; font-size: 0.85rem; }
+
+  /* Audiences */
+  .aud-grid { margin-top: 56px; }
+  .aud { padding: 26px 0 0; border-top: 1.5px solid var(--text); transition: border-color 0.4s; }
+  .aud:hover { border-color: var(--saffron); }
+  .aud h3 { font-size: clamp(1.4rem, 2.4vw, 2rem); letter-spacing: -0.03em; }
+  .aud p { margin-top: 10px; }
+
+  /* Ideas horizontal scroll */
+  .ideas-band { padding: clamp(80px, 10vw, 130px) 0; overflow: hidden; }
+  .hs-head, .row-head { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end; }
+  .hs-track { display: flex; gap: 18px; margin-top: 48px; padding: 0 var(--gutter); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .hs-track::-webkit-scrollbar { display: none; }
+  @media (min-width: 1000px) { .hs-track { padding-left: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter))); } }
+
+  /* Path */
+  .stairs { position: relative; display: grid; gap: 16px; margin-top: 64px; }
+  @media (min-width: 1000px) {
+    .stairs { grid-template-columns: repeat(4, 1fr); align-items: end; padding-top: 60px; }
+    .stair { margin-bottom: calc(var(--n) * 54px); }
+  }
+  .stair { z-index: 1; display: flex; flex-direction: column; gap: 12px; min-height: 280px; }
+  .stair .chip { align-self: flex-start; }
+  .stair-n { font: 800 3rem/1 var(--f-display); letter-spacing: -0.05em; color: var(--saffron); }
+  .stair .link-arrow { margin-top: auto; align-self: flex-start; }
+
+  /* John */
+  .john .split { align-items: center; }
+  .john-photo { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4 / 5; }
+  .john-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 45% 30%; }
+  .john-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(11, 11, 18, 0.55)); }
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 36px; }
+  .stat { background: var(--ink-2); border: 1px solid var(--line-inv); border-radius: 20px; padding: 20px; }
+  .stat b { display: block; font: 800 clamp(2rem, 4vw, 3rem)/1 var(--f-display); letter-spacing: -0.04em; color: var(--saffron); }
+  .stat span { display: block; margin-top: 8px; font-size: 0.9rem; color: var(--text-inv-muted); }
+  .cred-strip .chip { font-size: 0.95rem; padding: 12px 18px; }
+
+  /* Why 25X */
+  .why-text { font-family: var(--f-serif); font-style: italic; font-size: clamp(1.6rem, 3.4vw, 2.6rem); line-height: 1.25; margin-top: 18px; letter-spacing: -0.01em; }
+  .why-text :global(.ph) { font-family: var(--f-body); font-style: normal; font-size: 1rem; }
+
+  /* Guides */
+  .guide-card { display: flex; flex-direction: column; gap: 14px; min-height: 260px; }
+  .guide-card .chip { align-self: flex-start; }
+  .guide-card .link-arrow { margin-top: auto; align-self: flex-start; }
+</style>

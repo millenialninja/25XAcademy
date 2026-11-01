@@ -1,0 +1,35 @@
+---
+import type { Idea } from '../data/ideas';
+interface Props { idea: Idea }
+const { idea } = Astro.props;
+const scores: Record<string, number> = { score: 58 };
+---
+<a class="card idea-card" href={`/ideas/${idea.slug}`} data-idea>
+  <div class="mini" aria-hidden="true">
+    <p class="mini-title">{idea.tool}</p>
+    {idea.demo === 'score' && (
+      <div style="display:flex;gap:14px;align-items:center;margin-top:14px">
+        <div class="ring" data-p={scores.score}><span>{scores.score}%</span></div>
+        <div class="bars"><i data-w="72%"></i><i data-w="61%"></i><i data-w="38%"></i><i data-w="55%"></i></div>
+      </div>
+    )}
+    {idea.demo === 'quiz' && (
+      <div class="yn" style="margin-top:14px">
+        <div><span class="q"></span><b data-on>Yes</b><b>No</b></div>
+        <div><span class="q" style="max-width:70%"></span><b>Yes</b><b data-on>No</b></div>
+        <div><span class="q" style="max-width:85%"></span><b data-on>Yes</b><b>No</b></div>
+      </div>
+    )}
+    {idea.demo === 'estimate' && (
+      <p class="est" style="margin-top:14px">₹4.2L to ₹5.8L<small>Estimated range · demo</small></p>
+    )}
+  </div>
+  <span class="chip" style="align-self:flex-start">{idea.industry}</span>
+  <p class="idea-line">{idea.oneLine}</p>
+  <span class="link-arrow" style="margin-top:auto;align-self:flex-start">See the idea <span>→</span></span>
+</a>
+<style>
+  .idea-card { flex: 0 0 min(82vw, 330px); scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; min-height: 400px; }
+  .idea-line { font-size: 0.98rem; line-height: 1.5; }
+  :global(.ink) .idea-line { color: var(--text-inv-muted); }
+</style>

@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { breadcrumbs, faqPage, article } from '../data/schema';
+const crumbs = [{ name: 'The RAO Method', href: '/rao-method' }];
+const parts = [
+  { k: 'R', name: 'Role', color: 'var(--saffron)', text: 'Tell the AI who to be. A role sets the expertise, tone and standards it should use.', eg: 'You are a product designer building a lead tool for a CA firm in Chennai.' },
+  { k: 'A', name: 'Action', color: 'var(--lilac)', text: 'Say exactly what to do, with a clear, checkable outcome. One main action per prompt.', eg: 'Build a 6-question GST readiness check that scores the visitor out of 100 and shows their top 3 gaps.' },
+  { k: 'O', name: 'Operational context', color: 'var(--mint)', text: 'Give the facts it can’t guess: who the users are, rules, limits, format, tone and what to avoid.', eg: 'Visitors are small business owners on their phones. Plain English. Ask for name and WhatsApp number before the full result, with a consent line.' },
+];
+const before = 'Make a GST quiz for my website.';
+const qa = [
+  { q: 'What is the RAO method?', a: 'The RAO method is a simple way to write prompts for AI, created by John V Jayakumar. Every prompt has three parts: a Role (who the AI should be), an Action (exactly what to do) and the Operational context (users, rules, limits and format).' },
+  { q: 'Does the RAO method work with ChatGPT, Claude and AI builders like Lovable?', a: 'Yes. It works with any AI that takes written instructions, including chat assistants and AI app builders.' },
+];
+---
+<Base title="The RAO Method: how to write prompts that get results" description="The RAO method by John V Jayakumar: give AI a Role, a clear Action and the Operational context. A simple prompting framework for business owners, with examples."
+  schema={[breadcrumbs(crumbs), faqPage(qa), article({ title: 'The RAO Method', description: 'A three-part prompting framework: Role, Action, Operational context.', path: '/rao-method', published: '2026-11-01', updated: '2026-11-01' })]}>
+  <PageHero crumbs={crumbs} eyebrow="John's prompting framework" title="Role. Action. <span class='serif accent'>Operational context.</span>" lead="AI builds what you describe. The RAO method makes sure you describe it well, in three parts, every time." />
+  <section class="section">
+    <div class="container">
+      <div class="answer-box" data-reveal><strong>The short answer</strong>The RAO method is a three-part way to write prompts: give the AI a <b>Role</b> (who to be), an <b>Action</b> (exactly what to do) and the <b>Operational context</b> (users, rules, limits and format). It turns vague requests into clear briefs, so AI tools give you usable results the first time more often.</div>
+      <div class="rao-parts">
+        {parts.map((p) => (
+          <article class="part" style={`--c:${p.color}`} data-reveal>
+            <span class="letter">{p.k}</span>
+            <div>
+              <h2>{p.name}</h2>
+              <p class="lead">{p.text}</p>
+              <p class="eg"><em>Example</em>{p.eg}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section ink">
+    <div class="container">
+      <SectionHead eyebrow="Before and after" title="The same request, <span class='serif'>with and without</span> RAO." />
+      <div class="grid grid-2" style="margin-top:48px">
+        <div class="card" data-reveal><span class="eyebrow">Before</span><p class="ba">“{before}”</p><p class="muted">The AI has to guess who it’s for, how many questions, what the result looks like and what you want to receive. You’ll spend the next hour correcting it.</p></div>
+        <div class="card" data-reveal style="border-color:var(--saffron)"><span class="eyebrow">After</span>{parts.map((p) => <p class="ba-line" style={`--c:${p.color}`}>{p.eg}</p>)}<p class="muted">Clear role, a checkable outcome and the facts it needs. The first version is close, and changes are small.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container narrow prose">
+      <h2>Tips for using RAO</h2>
+      <ul>
+        <li><strong>One main action per prompt.</strong> Build, then refine. Don’t ask for ten things at once.</li>
+        <li><strong>Put the hard facts in the context.</strong> Prices, rules, legal lines and limits: AI can’t guess these.</li>
+        <li><strong>Say what to avoid.</strong> “Do not collect symptoms or medical history” is as useful as what to include.</li>
+        <li><strong>Refine with RAO too.</strong> “As the same designer (R), shorten every question to under 10 words (A); visitors are on phones (O).”</li>
+        <li><strong>Check the result yourself.</strong> RAO improves the first draft. You still test it like a customer would.</li>
+      </ul>
+      <p>See RAO prompts for <a href="/ideas">13 business tools by industry</a>, or watch it used live in the <a href="/programs/business-tools-workshop">3-Day Business Tools Workshop</a>.</p>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>
+  .rao-parts { display: grid; gap: 18px; margin-top: 48px; }
+  .part { display: grid; grid-template-columns: auto 1fr; gap: clamp(18px, 4vw, 48px); align-items: start; padding: clamp(24px, 4vw, 44px); border-radius: var(--radius-lg); background: #fffaf2; border: 1px solid var(--line); }
+  .letter { font: 800 clamp(5rem, 12vw, 9rem)/0.8 var(--f-display); color: var(--c); letter-spacing: -0.06em; }
+  .part h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+  .part .lead { margin-top: 12px; }
+  .eg { margin-top: 18px; padding: 14px 18px; border-left: 3px solid var(--c); background: var(--paper); border-radius: 0 12px 12px 0; font-size: 1rem; }
+  .eg em { display: block; font-style: normal; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
+  .ba { font-family: var(--f-serif); font-style: italic; font-size: 2rem; line-height: 1.2; margin: 16px 0; }
+  .ba-line { margin-top: 12px; padding-left: 14px; border-left: 3px solid var(--c); }
+  .card .muted { margin-top: 16px; }
+</style>

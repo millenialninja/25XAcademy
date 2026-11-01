@@ -1,0 +1,8 @@
+---
+// Two crossing beams: the 25X motif, used as decoration.
+interface Props { class?: string; color?: string }
+const { class: cls = '', color = '#0B0B12' } = Astro.props;
+---
+<svg class={cls} viewBox="0 0 200 200" aria-hidden="true" fill="none">
+  <path d="M20 20 L180 180 M180 20 L20 180" stroke={color} stroke-width="34" stroke-linecap="round" />
+</svg>

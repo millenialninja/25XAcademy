@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { programs } from '../../data/programs';
+import { breadcrumbs } from '../../data/schema';
+const crumbs = [{ name: 'Programs', href: '/programs' }];
+---
+<Base title="Programs: from a ₹99 workshop to a year-long startup intensive" description="25X Academy programs: the 3-Day Business Tools Workshop (₹99), BuildAlong Hub (12 weeks) and the Startup Intensive (1 year, by application). Live, hands-on, with John V Jayakumar." schema={[breadcrumbs(crumbs)]}>
+  <PageHero crumbs={crumbs} eyebrow="Programs" title="Learn by <span class='serif accent'>building</span>. Live, with John." lead="Three programs, one path. Start with three evenings for ₹99. Go further only if it's right for you." />
+  <section class="section">
+    <div class="container prog-list">
+      {programs.map((p) => (
+        <a class="prog" href={`/programs/${p.slug}`} data-reveal>
+          <span class="prog-n">{p.step}</span>
+          <div class="prog-main">
+            <h2>{p.name}</h2>
+            <p class="muted">{p.short}</p>
+            <p class="prog-format">{p.format}</p>
+          </div>
+          <div class="prog-price"><b>{p.price}</b><span>{p.priceNote}</span></div>
+        </a>
+      ))}
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>
+  .prog-list { display: grid; gap: 0; }
+  .prog { display: grid; gap: 18px 40px; padding: 44px 0; border-top: 1.5px solid var(--text); text-decoration: none; transition: padding 0.5s var(--ease); }
+  .prog:last-child { border-bottom: 1.5px solid var(--text); }
+  @media (min-width: 900px) { .prog { grid-template-columns: 120px 1fr 260px; align-items: start; } }
+  .prog:hover { padding-left: 16px; }
+  .prog:hover h2 { color: var(--saffron); }
+  .prog-n { font: 800 3.4rem/1 var(--f-display); color: var(--saffron); letter-spacing: -0.05em; }
+  .prog h2 { font-size: clamp(1.8rem, 3.6vw, 3rem); transition: color 0.3s; }
+  .prog .muted { margin-top: 12px; max-width: 40rem; font-size: 1.08rem; }
+  .prog-format { margin-top: 14px; font-size: 0.92rem; font-weight: 600; }
+  .prog-price b { display: block; font: 800 2rem/1.1 var(--f-display); letter-spacing: -0.03em; }
+  .prog-price span { color: var(--text-muted); font-size: 0.92rem; }
+</style>

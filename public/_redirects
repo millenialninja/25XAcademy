@@ -1,0 +1,5 @@
+# Old 25xacademy.com routes (previous Lovable site)
+/program      /programs                     301
+/apply        /programs/startup-intensive   301
+/about        /john-v-jayakumar             301
+/contact-us   /contact                      301

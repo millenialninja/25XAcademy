@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { links } from '../../data/site';
+import { breadcrumbs, course } from '../../data/schema';
+const path = '/programs/startup-intensive';
+const crumbs = [{ name: 'Programs', href: '/programs' }, { name: 'Startup Intensive', href: path }];
+const quarters = [
+  { q: 'Quarter 1', focus: 'The 12-week build program', result: 'Version 1 live, first users' },
+  { q: 'Quarter 2', focus: 'Launch and first customers', result: 'People paying for it' },
+  { q: 'Quarter 3', focus: 'Listen, improve, grow', result: 'A product people keep using' },
+  { q: 'Quarter 4', focus: 'Scale and next steps', result: 'A plan for growth, or for raising money' },
+];
+const steps = [
+  { t: 'Apply', d: 'Email a few lines about you, your startup and what you want to build.' },
+  { t: 'Call with John', d: '30 minutes to check it’s the right fit, for you and for us.' },
+  { t: 'Invoice', d: 'A GST invoice, paid by bank transfer.' },
+  { t: 'Start', d: 'Your Welcome Party, then Week 1.' },
+];
+const applyBody = 'Name:\nWhatsApp number:\nStartup name and website:\nWhat are you building, and who is it for?\nStage (idea / mock-up / early version / paying customers):\nTeam size, and does anyone code?\nWhen do you want version 1 live?\n';
+const applyHref = `mailto:hi@25xacademy.com?subject=${encodeURIComponent('Startup Intensive application')}&body=${encodeURIComponent(applyBody)}`;
+---
+<Base title="Startup Intensive: build your startup’s product with AI in one year" description="A one-year program for 25 startups a year: build your product with AI alongside John V Jayakumar, from the first version to real customers. By application."
+  schema={[breadcrumbs(crumbs), course({ name: 'Startup Intensive', description: 'A one-year program for founders building a software product for the public with AI, alongside John V Jayakumar. 25 startups a year, by application.', path, workload: 'P1Y' })]}>
+  <PageHero crumbs={crumbs} eyebrow="Step 03 · 1 year · 25 startups a year" title="Build your startup’s product with AI, <span class='serif accent'>alongside John</span>." lead="You have an idea for a product people will pay for. Don’t wait six months, or raise money, to hire a team before you find out if it works. Build it yourself with AI, with John beside you for a full year.">
+    <div class="btn-row">
+      <a class="btn" href={applyHref} data-magnetic>Apply by email <span class="arrow">→</span></a>
+      <span class="chip">By application · GST invoice</span>
+    </div>
+  </PageHero>
+  <section class="section">
+    <div class="container split">
+      <SectionHead eyebrow="Who it's for" title="Founders building for the public." />
+      <ul class="who" data-reveal>
+        <li>Founders and small teams building a software product for the public</li>
+        <li>Early stage: from idea to your first paying customers</li>
+        <li>Non-technical founders, or small teams who want to move faster without a big development team</li>
+        <li>Products that run on the web, on any phone or laptop, from a link</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section ink">
+    <div class="container">
+      <SectionHead eyebrow="Your year" title="Four quarters, from version 1 to a growing product." />
+      <div class="grid grid-4" style="margin-top:48px">
+        {quarters.map((q) => <div class="card" data-reveal><span class="eyebrow">{q.q}</span><h3 style="margin-top:14px">{q.focus}</h3><p class="muted" style="margin-top:10px">{q.result}</p></div>)}
+      </div>
+      <p class="muted" style="margin-top:32px">Includes everything in BuildAlong Hub Diamond Lifetime, plus extra support for founders. <mark class="ph">[DECISION: list the Startup Intensive extras]</mark></p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <SectionHead eyebrow="How to join" title="Four steps." />
+      <ol class="steps">{steps.map((s, i) => <li data-reveal><span>0{i + 1}</span><h3>{s.t}</h3><p class="muted">{s.d}</p></li>)}</ol>
+      <div class="btn-row" style="margin-top:40px"><a class="btn" href={applyHref}>Apply by email <span class="arrow">→</span></a></div>
+    </div>
+  </section>
+  <CtaBand title="Not ready for a year? Start with three evenings." />
+</Base>
+<style>
+  .who { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .who li { padding: 18px 22px 18px 54px; border-radius: 16px; background: #fffaf2; border: 1px solid var(--line); position: relative; font-size: 1.05rem; }
+  .who li::before { content: '✓'; position: absolute; left: 22px; color: var(--saffron); font-weight: 800; }
+  .steps { list-style: none; padding: 0; margin: 48px 0 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+  .steps li { border-top: 1.5px solid var(--text); padding-top: 22px; }
+  .steps span { font: 800 2.4rem/1 var(--f-display); color: var(--saffron); letter-spacing: -0.05em; }
+  .steps h3 { margin-top: 14px; }
+  .steps p { margin-top: 8px; }
+</style>

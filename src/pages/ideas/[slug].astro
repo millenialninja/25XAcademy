@@ -1,0 +1,85 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import IdeaCard from '../../components/IdeaCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { ideas, type Idea } from '../../data/ideas';
+import { breadcrumbs, faqPage } from '../../data/schema';
+
+export function getStaticPaths() {
+  return ideas.map((idea, i) => ({ params: { slug: idea.slug }, props: { idea, related: [ideas[(i + 1) % ideas.length], ideas[(i + 2) % ideas.length], ideas[(i + 3) % ideas.length]] } }));
+}
+interface Props { idea: Idea; related: Idea[] }
+const { idea, related } = Astro.props;
+const path = `/ideas/${idea.slug}`;
+const crumbs = [{ name: 'Ideas', href: '/ideas' }, { name: idea.industry, href: path }];
+const title = `AI lead tool for ${idea.industry.toLowerCase()}: ${idea.tool}`;
+const qa = [
+  { q: `What business tool can ${idea.audience.toLowerCase()} build with AI?`, a: `A ${idea.tool.toLowerCase()}. ${idea.oneLine} The visitor gets: ${idea.visitorGets} You get: ${idea.ownerGets}` },
+  { q: 'Do I need to know coding to build it?', a: 'No. You describe the tool to an AI builder such as Lovable in plain English, using a structured prompt like the RAO prompt on this page, then test and refine it.' },
+];
+---
+<Base title={title} description={`${idea.oneLine} A worked example for ${idea.audience.toLowerCase()}, with the questions, the result, the lead you get and a ready-to-use AI prompt.`} schema={[breadcrumbs(crumbs), faqPage(qa)]}>
+  <PageHero crumbs={crumbs} eyebrow={`For ${idea.audience.toLowerCase()}`} title={idea.tool} lead={idea.oneLine} />
+  <section class="section">
+    <div class="container split">
+      <div class="stack" style="--gap:28px">
+        <div data-reveal>
+          <h2 class="h-sm">What the visitor answers</h2>
+          <ol class="ask-list">{idea.asks.map((a) => <li>{a}</li>)}</ol>
+        </div>
+        <div class="grid grid-2" style="gap:14px">
+          <div class="card" data-reveal><span class="eyebrow">The visitor gets</span><p style="margin-top:12px">{idea.visitorGets}</p></div>
+          <div class="card" data-reveal style="background:var(--ink);color:var(--paper)"><span class="eyebrow" style="color:var(--text-inv-muted)">You get</span><p style="margin-top:12px">{idea.ownerGets}</p></div>
+        </div>
+        <div data-reveal>
+          <h2 class="h-sm">Why it works</h2>
+          <p class="lead" style="margin-top:12px">{idea.why}</p>
+        </div>
+      </div>
+      <div class="sticky">
+        <div class="prompt" data-reveal>
+          <span class="eyebrow" style="color:var(--text-inv-muted)">Your RAO prompt</span>
+          <p class="pl r"><em>Role</em>{idea.prompt.role}</p>
+          <p class="pl a"><em>Action</em>{idea.prompt.action}</p>
+          <p class="pl o"><em>Operational context</em>{idea.prompt.context}</p>
+          <button class="btn btn--sm" type="button" data-copy={`${idea.prompt.role}\n\n${idea.prompt.action}\n\n${idea.prompt.context}`}>Copy prompt</button>
+        </div>
+        <p class="muted small">Paste it into an AI builder such as Lovable, then refine. New to prompting? Read <a href="/rao-method">the RAO method</a>. Collecting personal data? Read <a href="/guides/collect-leads-legally-india-dpdp">DPDP basics</a>.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section--tight paper-2">
+    <div class="container">
+      <span class="eyebrow">More ideas</span>
+      <div class="grid grid-3" style="margin-top:24px">{related.map((r) => <IdeaCard idea={r} />)}</div>
+    </div>
+  </section>
+  <CtaBand title="See a tool like this built live." text="In the 3-Day Business Tools Workshop, John builds a working lead tool from a blank screen, then helps you plan yours. ₹99 for all 3 evenings." />
+</Base>
+<style>
+  .h-sm { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+  .ask-list { margin: 18px 0 0; padding: 0; list-style: none; counter-reset: a; display: grid; gap: 10px; }
+  .ask-list li { counter-increment: a; display: flex; gap: 14px; align-items: baseline; padding: 14px 18px; background: #fffaf2; border-radius: 14px; border: 1px solid var(--line); }
+  .ask-list li::before { content: counter(a, decimal-leading-zero); font: 800 0.9rem var(--f-display); color: var(--saffron); }
+  .sticky { position: sticky; top: 110px; display: grid; gap: 16px; }
+  .prompt { background: var(--ink); color: var(--paper); border-radius: var(--radius); padding: 26px; display: grid; gap: 14px; box-shadow: 0 40px 80px -30px rgba(11, 11, 18, 0.5); }
+  .pl { padding-left: 14px; border-left: 3px solid; font-size: 0.98rem; }
+  .pl em { display: block; font-style: normal; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
+  .r { border-color: var(--saffron); } .r em { color: var(--saffron); }
+  .a { border-color: var(--lilac); } .a em { color: var(--lilac); }
+  .o { border-color: var(--mint); } .o em { color: var(--mint); }
+  .prompt .btn { justify-self: start; }
+  .small { font-size: 0.92rem; }
+  .small a { color: var(--text); }
+  :global(.related) { flex: none; }
+</style>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((b) => {
+    b.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(b.dataset.copy || ''); b.textContent = 'Copied ✓'; }
+      catch { b.textContent = 'Select and copy the text above'; }
+      setTimeout(() => (b.textContent = 'Copy prompt'), 2500);
+    });
+  });
+</script>

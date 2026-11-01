@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Text from '../components/Text.astro';
+import { site, links, isPlaceholder } from '../data/site';
+import { breadcrumbs } from '../data/schema';
+const crumbs = [{ name: 'Contact', href: '/contact' }];
+const wa = isPlaceholder(site.whatsapp) ? null : `https://wa.me/${site.whatsapp}?text=${encodeURIComponent('Hi 25X Academy, I have a question about ')}`;
+const ways = [
+  { t: 'Workshop and programs', d: 'Questions about the ₹99 workshop, BuildAlong Hub or the Startup Intensive.', href: links.mailto('Question about a program'), cta: 'Email us' },
+  { t: 'Keynotes and corporate training', d: 'Invite John to speak, or plan AI training for your team.', href: '/speaking', cta: 'Speaking details' },
+  { t: 'Refunds, access and billing', d: 'Include your order ID. We acknowledge within 48 hours.', href: links.mailto('Refund / access / billing'), cta: 'Email us' },
+];
+---
+<Base title="Contact 25X Academy" description="Contact 25X Academy in Chennai: email hi@25xacademy.com for programs, speaking, refunds and privacy questions. Business details and grievance officer." schema={[breadcrumbs(crumbs)]}>
+  <PageHero crumbs={crumbs} eyebrow="Contact" title="Talk to <span class='serif accent'>a person</span>." lead="No forms here. Email us, or message us on WhatsApp, and a real person replies." />
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3">
+        {ways.map((w) => <a class="card way" href={w.href} data-reveal><h3>{w.t}</h3><p class="muted">{w.d}</p><span class="link-arrow">{w.cta} <span>→</span></span></a>)}
+      </div>
+      <div class="grid grid-2" style="margin-top:24px">
+        <div class="card" data-reveal>
+          <span class="eyebrow">Reach us</span>
+          <dl class="kv">
+            <dt>Email</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+            <dt>Phone</dt><dd><a href={site.phoneHref}>{site.phone}</a></dd>
+            <dt>WhatsApp</dt><dd>{wa ? <a href={wa}>Message us on WhatsApp</a> : <Text value={site.whatsapp} />}</dd>
+          </dl>
+        </div>
+        <div class="card" data-reveal>
+          <span class="eyebrow">Business details</span>
+          <dl class="kv">
+            <dt>Legal name</dt><dd>{site.legalName} ({site.entityType.toLowerCase()})</dd>
+            <dt>Address</dt><dd><Text value={site.address} /></dd>
+            <dt>GSTIN</dt><dd><Text value={site.gstin} /></dd>
+            <dt>Grievance Officer</dt><dd>{site.grievanceOfficer}, <a href={`mailto:${site.email}`}>{site.email}</a>, <a href={site.phoneHref}>{site.phone}</a></dd>
+          </dl>
+          <p class="muted small">We acknowledge complaints within 48 hours and resolve them within one month. You can also contact the National Consumer Helpline: 1915 or consumerhelpline.gov.in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .way { display: flex; flex-direction: column; gap: 12px; min-height: 230px; }
+  .way .link-arrow { margin-top: auto; align-self: flex-start; }
+  .kv { display: grid; grid-template-columns: 140px 1fr; gap: 12px 16px; margin: 18px 0 0; }
+  .kv dt { font-weight: 600; }
+  .kv dd { margin: 0; }
+  .small { font-size: 0.9rem; margin-top: 18px; }
+  @media (max-width: 520px) { .kv { grid-template-columns: 1fr; gap: 2px; } .kv dd { margin-bottom: 10px; } }
+</style>

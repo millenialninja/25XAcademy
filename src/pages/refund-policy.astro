@@ -1,0 +1,6 @@
+---
+import Legal from '../layouts/Legal.astro';
+import * as doc from '../content/legal/refund-policy.md';
+const html = await doc.compiledContent();
+---
+<Legal title="Refund and Cancellation Policy" description="When you can get a refund for a 25X Academy program, how to ask, and how long it takes." path="/refund-policy" html={html} />

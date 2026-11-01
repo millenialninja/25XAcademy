@@ -1,0 +1,6 @@
+---
+import Legal from '../layouts/Legal.astro';
+import * as doc from '../content/legal/privacy.md';
+const html = await doc.compiledContent();
+---
+<Legal title="Privacy Policy" description="How 25X Academy collects, uses and protects your personal data, and your rights under India's DPDP Act." path="/privacy" html={html} />

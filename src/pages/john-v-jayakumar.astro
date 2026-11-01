@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Text from '../components/Text.astro';
+import { john, site, links } from '../data/site';
+import { breadcrumbs, person } from '../data/schema';
+const crumbs = [{ name: 'About John', href: '/john-v-jayakumar' }];
+---
+<Base title="John V Jayakumar: AI keynote speaker, trainer and founder of 25X Academy" description="John V Jayakumar (Vincent John Jayakumar) is a Chennai-based AI keynote speaker and trainer, founder of 25X Academy and CEO of Superposition Technologies. Ex-Verizon, 2 US patents, author of The AI-Native Leader." schema={[breadcrumbs(crumbs), person()]}>
+  <section class="about-hero ink">
+    <div class="grid-lines"></div>
+    <div class="cursor-glow" data-cursor-glow></div>
+    <div class="container split split--even" style="position:relative">
+      <div>
+        <Crumbs items={crumbs} />
+        <span class="eyebrow" data-reveal="fade">Founder, 25X Academy</span>
+        <h1 data-split>John V <span class="serif accent">Jayakumar</span></h1>
+        <p class="lead" data-reveal>AI keynote speaker and trainer from Chennai. Founder of 25X Academy, CEO of Superposition Technologies, and author of <i>The AI-Native Leader</i>. John has trained 5,000+ people to use AI in their work.</p>
+        <div class="btn-row" data-reveal style="margin-top:32px">
+          <a class="btn" href="/speaking">Invite John to speak <span class="arrow">→</span></a>
+          <a class="btn btn--ghost" href={links.workshop}>Learn with John for ₹99</a>
+        </div>
+      </div>
+      <div class="portrait" data-reveal>
+        <img src={john.photo} alt="John V Jayakumar" width="1400" height="941" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <SectionHead eyebrow="The story" title="From a stressed 9&#8209;to&#8209;5 to building with AI." />
+      <div class="prose" data-reveal>
+        <p>8 years ago, John was an IT professional in a regular 9-to-5: constant stress, very little time for family. He had spent decades in technology, including at Verizon, where he received the CIO Credo Star Award for Performance Excellence and was named on two US patents.</p>
+        <p>When AI made it possible for one person to build what used to need a team, John changed course. He started building AI tools and businesses, and teaching others to do the same: live, hands-on and from a blank screen, so people see every step rather than a polished demo.</p>
+        <p>Today John runs Superposition Technologies and 25X Academy, speaks on AI leadership, and teaches business owners and professionals across India to put AI to work in their own business.</p>
+        <p class="muted"><Text value="[FILL: anything John wants to add to his story: family, turning point, mission]" /></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight paper-2">
+    <div class="container">
+      <div class="stats-row">
+        {john.stats.map((s) => <div class="s" data-reveal><b data-count={s.value} data-suffix={s.suffix}>{s.value.toLocaleString('en-IN')}{s.suffix}</b><span>{s.label}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHead eyebrow="Credentials" title="Experience you can check." />
+      <div class="grid grid-2" style="margin-top:40px">
+        <div class="card" data-reveal>
+          <h3>Career and recognition</h3>
+          <ul class="ticks">
+            {john.credentials.map((c) => <li>{c}</li>)}
+          </ul>
+        </div>
+        <div class="card" data-reveal>
+          <h3>Find John online</h3>
+          <ul class="ticks">
+            <li>LinkedIn: <Text value={site.social.linkedin} /></li>
+            <li>YouTube: <Text value={site.social.youtube} /></li>
+            <li>The Future Simulator: <a href={links.futureSimulator} rel="noopener">thefuturesimulator.com</a></li>
+            <li>Patents: <Text value="[FILL: US patent numbers with Google Patents links]" /></li>
+            <li>Books: <Text value="[FILL: Amazon author page or book links]" /></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <CtaBand title="Learn with John, live, this week." />
+</Base>
+<style>
+  .about-hero { padding: clamp(140px, 18vw, 200px) 0 clamp(70px, 9vw, 120px); position: relative; overflow: hidden; }
+  .about-hero h1 { font-size: clamp(3rem, 8vw, 6.4rem); margin-top: 18px; }
+  .about-hero .lead { margin-top: 24px; }
+  .portrait { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4 / 5; transform: rotate(2deg); box-shadow: 0 50px 100px -40px rgba(0, 0, 0, 0.8); }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 45% 30%; }
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 24px; }
+  .s b { display: block; font: 800 clamp(2.8rem, 6vw, 4.4rem)/1 var(--f-display); letter-spacing: -0.05em; color: var(--saffron); }
+  .s span { color: var(--text-muted); }
+  .ticks { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
+  .ticks li { padding-left: 26px; position: relative; }
+  .ticks li::before { content: '✓'; position: absolute; left: 0; color: var(--saffron); font-weight: 800; }
+</style>

@@ -1,0 +1,242 @@
+// Business tool ideas by industry. Each one becomes a page at /ideas/[slug].
+// demo: which mini preview the card shows (score ring, yes/no quiz, estimate).
+
+export type Idea = {
+  slug: string;
+  industry: string;
+  audience: string;
+  tool: string;
+  demo: 'score' | 'quiz' | 'estimate';
+  oneLine: string;
+  asks: string[];
+  visitorGets: string;
+  ownerGets: string;
+  why: string;
+  prompt: { role: string; action: string; context: string };
+};
+
+const lead = 'name, WhatsApp number and main need';
+
+export const ideas: Idea[] = [
+  {
+    slug: 'ca-and-tax-firms',
+    industry: 'CA and tax firms',
+    audience: 'Chartered accountants and tax consultants',
+    tool: 'GST readiness check',
+    demo: 'quiz',
+    oneLine: 'A 2-minute check that tells a business owner how ready their GST filings are, and where the gaps are.',
+    asks: ['Annual turnover band', 'Registered for GST? Since when?', 'How invoices are made today', 'Last return filed on time?', 'Who handles reconciliation'],
+    visitorGets: 'A readiness score with their top 3 gaps, in plain language.',
+    ownerGets: `The visitor’s ${lead}, plus their score and gaps, so the first call starts with their real problem.`,
+    why: 'Business owners worry about GST but rarely ask for help until something goes wrong. A free check gives them a reason to reach out early.',
+    prompt: {
+      role: 'You are a product designer building a lead tool for a CA firm in Chennai.',
+      action: 'Build a 6-question GST readiness check that scores the visitor out of 100 and shows their top 3 gaps.',
+      context: 'Visitors are small business owners on their phones. Plain English, no jargon. Ask for name and WhatsApp number before showing the full result. Show a consent line for contact.',
+    },
+  },
+  {
+    slug: 'digital-agencies',
+    industry: 'Digital agencies',
+    audience: 'Digital marketing and web agencies',
+    tool: 'Website health score',
+    demo: 'score',
+    oneLine: 'Visitors answer a few questions about their website and get a health score across speed, visibility, trust and conversion.',
+    asks: ['Do you get enquiries from your website?', 'Does it load fast on a phone?', 'Do you show reviews or results?', 'Is there a clear next step on each page?', 'When was it last updated?'],
+    visitorGets: 'A score in four areas, with one quick fix for each.',
+    ownerGets: `The visitor’s ${lead}, the website address and the weakest area, ready for a proposal.`,
+    why: 'Prospects rarely know what is wrong with their website. A score turns a vague feeling into a specific problem your agency can solve.',
+    prompt: {
+      role: 'You are a conversion expert building a lead tool for a digital agency.',
+      action: 'Build a website health check with 8 yes/no questions that scores speed, visibility, trust and conversion.',
+      context: 'Show each area as a bar and the overall score as a ring. Ask for name, WhatsApp number and website URL before the detailed report.',
+    },
+  },
+  {
+    slug: 'coaches-and-trainers',
+    industry: 'Coaches and trainers',
+    audience: 'Leadership coaches and corporate trainers',
+    tool: 'Leadership style check',
+    demo: 'quiz',
+    oneLine: 'A short quiz that tells a manager their leadership style and the one habit to work on next.',
+    asks: ['How do you handle a missed deadline?', 'How often do you give feedback?', 'How are decisions made in your team?', 'What drains your energy at work?'],
+    visitorGets: 'Their leadership style, its strengths, and one habit to build.',
+    ownerGets: `The visitor’s ${lead}, their style and company, so you can offer the right coaching or a team workshop.`,
+    why: 'People love learning about themselves. A style quiz gets shared inside teams, and HR teams often ask for the whole team to take it.',
+    prompt: {
+      role: 'You are an executive coach designing a self-assessment.',
+      action: 'Build an 8-question leadership style quiz with 4 possible styles and a result page for each.',
+      context: 'Warm, encouraging tone. The result shows strengths first, then one habit to work on. Offer the full report after name and WhatsApp number.',
+    },
+  },
+  {
+    slug: 'real-estate',
+    industry: 'Real estate',
+    audience: 'Real estate agents and developers',
+    tool: 'How much home can you afford',
+    demo: 'estimate',
+    oneLine: 'A calculator that turns income, savings and EMI comfort into a realistic home budget.',
+    asks: ['Monthly take-home income', 'Savings for the down payment', 'Existing EMIs', 'Preferred area', 'When they plan to buy'],
+    visitorGets: 'A budget range and an estimated EMI, with a clear note that it is an estimate, not a loan offer.',
+    ownerGets: `The visitor’s ${lead}, budget range, area and timeline: a ready-qualified buyer.`,
+    why: 'Buyers search for budget answers long before they call an agent. Answer that question first, and you are the agent they remember.',
+    prompt: {
+      role: 'You are a product designer building a home-budget calculator for a real estate firm.',
+      action: 'Build a calculator that estimates an affordable home price and monthly EMI from income, savings and existing EMIs.',
+      context: 'Use rupees and lakhs. Show the result as a range. Add a clear disclaimer that this is an estimate, not financial advice. Ask for name and WhatsApp number to send matching listings.',
+    },
+  },
+  {
+    slug: 'financial-advisers',
+    industry: 'Financial advisers',
+    audience: 'Financial planners and advisers',
+    tool: 'Retirement readiness check',
+    demo: 'score',
+    oneLine: 'A friendly check that shows how prepared someone is for retirement, and what to look at first.',
+    asks: ['Age and planned retirement age', 'Do you have an emergency fund?', 'Regular investing today?', 'Health insurance in place?', 'Any dependants?'],
+    visitorGets: 'A readiness score and three questions to discuss with an adviser.',
+    ownerGets: `The visitor’s ${lead}, age band and score, for a focused first meeting.`,
+    why: 'Retirement feels far away until it doesn’t. A simple score makes the question concrete without asking for sensitive numbers up front.',
+    prompt: {
+      role: 'You are a financial educator designing a lead tool for a registered adviser.',
+      action: 'Build a 7-question retirement readiness check with a score and three discussion points.',
+      context: 'Do not ask for exact income or portfolio values. Avoid product recommendations. Include a note that this is general education, not advice.',
+    },
+  },
+  {
+    slug: 'interior-designers',
+    industry: 'Interior designers',
+    audience: 'Interior designers and home studios',
+    tool: 'Project budget estimator',
+    demo: 'estimate',
+    oneLine: 'Homeowners pick rooms, size and finish level, and see a budget range before they call.',
+    asks: ['Type of home and size', 'Rooms to design', 'Finish level: essential, premium or luxury', 'Timeline'],
+    visitorGets: 'A budget range per room and in total.',
+    ownerGets: `The visitor’s ${lead}, scope, budget range and timeline.`,
+    why: 'The first question every homeowner has is “how much?”. Answering it honestly filters out mismatched enquiries and builds trust.',
+    prompt: {
+      role: 'You are a product designer building an estimator for an interior design studio.',
+      action: 'Build an estimator where the visitor selects home type, rooms and finish level, and sees a budget range.',
+      context: 'Use rupees with lakhs. Show ranges, not exact quotes. Let the studio edit the per-room rates easily. Ask for name and WhatsApp number to send a detailed estimate.',
+    },
+  },
+  {
+    slug: 'training-institutes',
+    industry: 'Training institutes',
+    audience: 'Training institutes and course creators',
+    tool: 'Which course fits you',
+    demo: 'quiz',
+    oneLine: 'A course finder that matches each learner to the right course, level and batch.',
+    asks: ['Your goal', 'Current skill level', 'Time available each week', 'Preferred mode: online or classroom'],
+    visitorGets: 'The best-fit course, with why it fits and the next batch date.',
+    ownerGets: `The visitor’s ${lead}, goal and level, so counsellors call the right people with the right course.`,
+    why: 'Confused learners don’t enquire. A finder removes the confusion and gives your counsellors warm, well-matched leads.',
+    prompt: {
+      role: 'You are a learning advisor designing a course finder.',
+      action: 'Build a 5-question course finder that recommends one of the institute’s courses.',
+      context: 'Courses and rules should be easy to edit in one list. Show the recommendation with a short reason. Ask for name and WhatsApp number to share batch details.',
+    },
+  },
+  {
+    slug: 'consultants',
+    industry: 'Consultants',
+    audience: 'Business and management consultants',
+    tool: 'Business growth scorecard',
+    demo: 'score',
+    oneLine: 'Every visitor gets a growth score across visibility, engagement, conversion and follow-up.',
+    asks: ['How new customers find you', 'How you follow up with enquiries', 'How you track sales', 'What share of customers return'],
+    visitorGets: 'A score in four areas and the weakest link to fix first.',
+    ownerGets: `The visitor’s ${lead}, their score and weakest area: the perfect opening for a strategy call.`,
+    why: 'A scorecard shows your thinking before the first meeting. Prospects arrive already understanding how you work.',
+    prompt: {
+      role: 'You are a growth consultant building a diagnostic scorecard.',
+      action: 'Build a 10-question scorecard across visibility, engagement, conversion and follow-up, with a score for each.',
+      context: 'Show the overall score as a ring and each area as a bar. The free result shows the weakest area. The full report comes after name and WhatsApp number.',
+    },
+  },
+  {
+    slug: 'speakers',
+    industry: 'Speakers',
+    audience: 'Keynote speakers',
+    tool: 'Keynote Finder',
+    demo: 'quiz',
+    oneLine: 'Event organisers answer a few questions and get the right talk for their audience, plus a booking enquiry.',
+    asks: ['Type of event', 'Audience size and role', 'Theme or challenge', 'Date and city'],
+    visitorGets: 'The best-fit keynote with its outline and outcomes.',
+    ownerGets: 'The organiser’s name, WhatsApp number, event, date and audience: a qualified speaking enquiry.',
+    why: 'Organisers browse many speakers. A finder makes it easy to picture your talk at their event and enquire on the spot.',
+    prompt: {
+      role: 'You are a speaker’s booking assistant.',
+      action: 'Build a keynote finder that recommends one of the speaker’s talks from 4 questions about the event.',
+      context: 'Each talk has a title, outline and outcomes, editable in one list. After the recommendation, collect the organiser’s details and event date.',
+    },
+  },
+  {
+    slug: 'corporate-trainers',
+    industry: 'Corporate trainers',
+    audience: 'Corporate trainers and L&D consultants',
+    tool: 'Training-needs quiz for HR teams',
+    demo: 'quiz',
+    oneLine: 'HR managers answer a few questions about their team and get a list of training priorities.',
+    asks: ['Team size and function', 'Biggest performance gap', 'Recent changes (tools, structure, growth)', 'Budget window'],
+    visitorGets: 'Top 3 training priorities for their team.',
+    ownerGets: `The HR manager’s ${lead}, company and priorities.`,
+    why: 'HR teams need to justify training. A needs list gives them something to take to their manager, with your name on it.',
+    prompt: {
+      role: 'You are an L&D consultant designing a training-needs tool.',
+      action: 'Build a training-needs quiz for HR managers that returns the top 3 training priorities.',
+      context: 'Professional tone. The result can be downloaded or shared. Ask for name, company and WhatsApp number before the full list.',
+    },
+  },
+  {
+    slug: 'life-and-career-coaches',
+    industry: 'Coaches',
+    audience: 'Life, career and business coaches',
+    tool: 'Client readiness assessment',
+    demo: 'score',
+    oneLine: 'Prospective clients check whether they are ready for coaching, before booking a call.',
+    asks: ['What do you want to change?', 'How long has this been on your mind?', 'What have you tried?', 'How much time can you give each week?'],
+    visitorGets: 'A readiness score and what to expect from coaching.',
+    ownerGets: `The visitor’s ${lead} and goal, so discovery calls are with people who are ready.`,
+    why: 'Coaches spend hours on calls with people who aren’t ready. A readiness check saves that time and respects the visitor’s too.',
+    prompt: {
+      role: 'You are a coach designing a pre-call assessment.',
+      action: 'Build a 6-question coaching readiness assessment with a score and an honest result.',
+      context: 'Kind, non-judgmental tone. If the score is low, suggest a free resource instead of a call. Ask for name and WhatsApp number to book.',
+    },
+  },
+  {
+    slug: 'clinics-and-practices',
+    industry: 'Clinics and practices',
+    audience: 'Clinics, dental practices and therapists',
+    tool: 'Appointment pre-check',
+    demo: 'quiz',
+    oneLine: 'Patients choose the reason for their visit and preferred slot before calling, so the front desk is ready.',
+    asks: ['Reason for visit (from a short list)', 'New or returning patient', 'Preferred day and time', 'Language preference'],
+    visitorGets: 'What to bring, how long the visit takes, and the next available slots.',
+    ownerGets: 'The patient’s name, WhatsApp number, reason and preferred slot.',
+    why: 'Fewer calls, fewer no-shows and better-prepared visits. Keep it to scheduling: health details belong with the clinician, not a web form.',
+    prompt: {
+      role: 'You are a product designer building an appointment pre-check for a clinic.',
+      action: 'Build a short pre-check that collects the visit reason, patient type and preferred slot.',
+      context: 'Do not collect symptoms or medical history. Show a clear note that this is not medical advice. Get explicit consent before saving contact details.',
+    },
+  },
+  {
+    slug: 'small-businesses',
+    industry: 'Small businesses',
+    audience: 'Local service businesses',
+    tool: 'Instant quote calculator',
+    demo: 'estimate',
+    oneLine: 'Customers choose the service, size and options, and get a price range instantly.',
+    asks: ['Service needed', 'Size or quantity', 'Options and add-ons', 'Location and date'],
+    visitorGets: 'An instant price range and the next available date.',
+    ownerGets: `The customer’s ${lead}, the job details and the quoted range.`,
+    why: 'Customers often contact the business that answers “how much?” first. An instant quote does that day and night.',
+    prompt: {
+      role: 'You are a product designer building a quote calculator for a local service business.',
+      action: 'Build a calculator where customers pick a service, size and options and see a price range.',
+      context: 'Prices are editable in one table. Show ranges with a note that final prices are confirmed after a visit. Ask for name and WhatsApp number to confirm.',
+    },
+  },
+];

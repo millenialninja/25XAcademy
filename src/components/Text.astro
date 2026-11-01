@@ -1,0 +1,9 @@
+---
+// Renders a value from site data. Unfilled placeholders get a visible
+// striped highlight so they can't be missed before launch.
+import { isPlaceholder } from '../data/site';
+interface Props { value: string; href?: string }
+const { value, href } = Astro.props;
+const ph = isPlaceholder(value);
+---
+{ph ? <mark class="ph">{value}</mark> : href ? <a href={href}>{value}</a> : <Fragment>{value}</Fragment>}

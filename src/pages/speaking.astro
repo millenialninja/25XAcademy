@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { site, links } from '../data/site';
+import { breadcrumbs } from '../data/schema';
+const crumbs = [{ name: 'Keynotes and training', href: '/speaking' }];
+const talks = [
+  { t: 'The AI-Native Leader', d: 'What changes for leaders when every team member can build with AI, and how to lead the shift without losing people along the way.' },
+  { t: 'Build, don’t just chat', d: 'A live demonstration: a working business tool built from a blank screen during the talk. Audiences leave knowing what AI can really do.' },
+  { t: 'Governing AI agents at work', d: 'Practical guardrails for teams adopting AI assistants and agents: data, security, accountability and quality.' },
+  { t: 'AI-assisted development for IT teams', d: 'How engineering teams can use AI builders and coding assistants safely, and where human review still matters.' },
+];
+const formats = ['Conference keynotes', 'Leadership offsites', 'Corporate workshops (half day to 3 days)', 'College and university sessions', 'Online masterclasses'];
+const enquiry = links.mailto('Speaking / training enquiry');
+---
+<Base title="AI keynote speaker and corporate trainer: John V Jayakumar" description="Invite John V Jayakumar to speak on AI leadership, AI agents and building with AI, or to run hands-on corporate AI training for your teams. Chennai, India and online." schema={[breadcrumbs(crumbs)]}>
+  <PageHero crumbs={crumbs} eyebrow="Keynotes and training" title="Talks that <span class='serif accent'>build something</span> on stage." lead="John speaks on AI leadership and adoption, and runs hands-on AI training for teams. Many talks include a live build, so the audience sees AI working, not slides about it.">
+    <div class="btn-row"><a class="btn" href={enquiry} data-magnetic>Send an enquiry <span class="arrow">→</span></a><span class="chip">{site.email}</span></div>
+  </PageHero>
+  <section class="section">
+    <div class="container">
+      <SectionHead eyebrow="Popular talks" title="Topics" />
+      <div class="grid grid-2" style="margin-top:40px">
+        {talks.map((t) => <article class="card" data-reveal><h3>{t.t}</h3><p class="muted" style="margin-top:10px">{t.d}</p></article>)}
+      </div>
+      <p class="muted" style="margin-top:20px"><mark class="ph">[FILL: confirm talk titles, add past events and organisers you have permission to name]</mark></p>
+    </div>
+  </section>
+  <section class="section--tight ink">
+    <div class="container split">
+      <SectionHead eyebrow="Formats" title="In person in India, or online anywhere." />
+      <ul class="fmt">{formats.map((f) => <li data-reveal>{f}</li>)}</ul>
+    </div>
+  </section>
+  <section class="section--tight">
+    <div class="container narrow" style="text-align:center">
+      <h2 data-split>Planning an event?</h2>
+      <p class="lead" style="margin:18px auto 0">Email the date, city, audience and theme. We reply within two working days.</p>
+      <div class="btn-row" style="justify-content:center;margin-top:28px"><a class="btn" href={enquiry}>Email {site.email}</a></div>
+    </div>
+  </section>
+</Base>
+<style>
+  .fmt { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .fmt li { padding: 18px 22px; border-radius: 16px; background: var(--ink-2); border: 1px solid var(--line-inv); font: 600 1.15rem var(--f-display); }
+</style>

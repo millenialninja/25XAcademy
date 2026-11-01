@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import XDeco from '../components/XDeco.astro';
+---
+<Base title="Page not found" description="This page doesn't exist." noindex>
+  <section class="ink nf">
+    <div class="container" style="position:relative">
+      <XDeco class="nf-x" color="#FF7A1A" />
+      <span class="eyebrow">404</span>
+      <h1>This page went <span class="serif accent">missing</span>.</h1>
+      <p class="lead">It may have moved when we rebuilt the site.</p>
+      <div class="btn-row" style="margin-top:32px"><a class="btn" href="/">Go home</a><a class="btn btn--ghost" href="/guides">Read a guide</a></div>
+    </div>
+  </section>
+</Base>
+<style>
+  .nf { min-height: 90svh; display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; }
+  .nf h1 { margin-top: 18px; max-width: 12ch; }
+  .nf .lead { margin-top: 20px; }
+  .nf-x { position: absolute; right: 0; top: 50%; width: min(40vw, 420px); transform: translateY(-50%) rotate(8deg); opacity: 0.9; }
+</style>

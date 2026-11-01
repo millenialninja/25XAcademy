@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { glossary } from '../data/glossary';
+import { breadcrumbs } from '../data/schema';
+const crumbs = [{ name: 'AI glossary', href: '/glossary' }];
+const terms = [...glossary].sort((a, b) => a.term.localeCompare(b.term));
+const slug = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const termSet = {
+  '@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': 'https://25xacademy.com/glossary', name: 'AI for business glossary',
+  hasDefinedTerm: terms.map((t) => ({ '@type': 'DefinedTerm', name: t.term, description: t.definition, url: `https://25xacademy.com/glossary#${slug(t.term)}` })),
+};
+const letters = [...new Set(terms.map((t) => t.term[0].toUpperCase()))];
+---
+<Base title="AI glossary for business owners, in plain English" description={`${terms.length} AI terms explained in plain English for business owners in India: vibe coding, LLMs, prompts, RAG, the DPDP Act, row-level security and more.`} schema={[breadcrumbs(crumbs), termSet]}>
+  <PageHero crumbs={crumbs} eyebrow="Glossary" title="AI words, <span class='serif accent'>plainly</span> explained." lead="The terms you’ll hear when you start building with AI, explained for business owners, not engineers." />
+  <section class="section">
+    <div class="container narrow">
+      <nav class="letters" aria-label="Jump to letter">{letters.map((l) => <a href={`#letter-${l}`}>{l}</a>)}</nav>
+      <dl class="terms">
+        {terms.map((t, i) => (
+          <div class="term" id={slug(t.term)} data-reveal>
+            {(i === 0 || terms[i - 1].term[0].toUpperCase() !== t.term[0].toUpperCase()) && <span class="anchor" id={`letter-${t.term[0].toUpperCase()}`} />}
+            <dt>{t.term}</dt>
+            <dd>{t.definition}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>
+  .letters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .letters a { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: var(--paper-2); text-decoration: none; font-weight: 700; }
+  .letters a:hover { background: var(--saffron); }
+  .terms { margin: 0; display: grid; }
+  .term { padding: 26px 0; border-top: 1px solid var(--line); scroll-margin-top: 110px; position: relative; }
+  .anchor { position: absolute; top: -110px; }
+  dt { font: 700 1.45rem var(--f-display); letter-spacing: -0.02em; }
+  dd { margin: 8px 0 0; color: var(--text-muted); font-size: 1.05rem; }
+</style>

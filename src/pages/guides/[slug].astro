@@ -1,0 +1,61 @@
+---
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getGuides, type Guide } from '../../data/guides';
+import { article, breadcrumbs } from '../../data/schema';
+import { john } from '../../data/site';
+
+export async function getStaticPaths() {
+  const guides = await getGuides();
+  return guides.map((g) => ({ params: { slug: g.slug }, props: { guide: g, others: guides.filter((o) => o.slug !== g.slug).slice(0, 2) } }));
+}
+interface Props { guide: Guide; others: Guide[] }
+const { guide, others } = Astro.props;
+const { Content } = guide;
+const path = `/guides/${guide.slug}`;
+const crumbs = [{ name: 'Guides', href: '/guides' }, { name: guide.title, href: path }];
+const fmt = (d: string) => new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title={guide.title} description={guide.description} ogType="article"
+  schema={[article({ title: guide.title, description: guide.description, path, published: guide.published, updated: guide.updated }), breadcrumbs(crumbs)]}>
+  <article>
+    <header class="guide-head">
+      <div class="container narrow">
+        <Crumbs items={crumbs} />
+        <span class="chip">{guide.category} · {guide.readMinutes} min read</span>
+        <h1 data-split>{guide.title}</h1>
+        <div class="byline">
+          <img src={john.photo} alt="" width="44" height="44" />
+          <p>By <a href="/john-v-jayakumar">{john.name}</a> · Updated <time datetime={guide.updated}>{fmt(guide.updated)}</time></p>
+        </div>
+      </div>
+    </header>
+    <div class="container narrow">
+      <div class="answer-box" data-reveal><strong>The short answer</strong>{guide.answer}</div>
+      <div class="prose" style="margin-top:48px"><Content /></div>
+    </div>
+  </article>
+  <section class="section--tight">
+    <div class="container narrow">
+      <span class="eyebrow">Keep reading</span>
+      <div class="grid grid-2" style="margin-top:20px">
+        {others.map((o) => (
+          <a class="card" href={`/guides/${o.slug}`} style="display:grid;gap:10px">
+            <span class="chip" style="justify-self:start">{o.category}</span>
+            <h3>{o.title}</h3>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+<style>
+  .guide-head { padding: clamp(140px, 18vw, 200px) 0 48px; }
+  .guide-head h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-top: 18px; max-width: none; }
+  .guide-head .chip { margin-top: 12px; }
+  .byline { display: flex; align-items: center; gap: 12px; margin-top: 26px; color: var(--text-muted); font-size: 0.95rem; }
+  .byline img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: 45% 25%; }
+  .byline a { color: var(--text); }
+</style>

@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import IdeaCard from '../../components/IdeaCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { ideas } from '../../data/ideas';
+import { breadcrumbs } from '../../data/schema';
+const crumbs = [{ name: 'Ideas', href: '/ideas' }];
+const itemList = {
+  '@context': 'https://schema.org', '@type': 'ItemList', name: 'AI business tool ideas by industry',
+  itemListElement: ideas.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: `${i.tool} for ${i.industry}`, url: `https://25xacademy.com/ideas/${i.slug}` })),
+};
+---
+<Base title="AI business tool ideas by industry" description={`${ideas.length} business tools you can build with AI, without coding: for CA firms, agencies, coaches, real estate, clinics, consultants, speakers and more. Each with a ready-to-use prompt.`} schema={[breadcrumbs(crumbs), itemList]}>
+  <PageHero crumbs={crumbs} eyebrow="Ideas by industry" title={`${ideas.length} business tools you could <span class='serif accent'>build this month</span>.`} lead="Each one answers a question your customers already ask, gives them a useful result, and hands you a qualified lead. Every idea comes with a prompt you can use." />
+  <section class="section">
+    <div class="container">
+      <div class="idea-grid">{ideas.map((i) => <IdeaCard idea={i} />)}</div>
+    </div>
+  </section>
+  <CtaBand title="Want to see one built live?" />
+</Base>
+<style>
+  .idea-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+  .idea-grid :global(.idea-card) { flex: none; min-height: 380px; }
+</style>

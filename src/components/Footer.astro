@@ -1,0 +1,28 @@
+---
+import BrandMark from './BrandMark.astro';
+import { site, footerNav, links } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="/"><BrandMark />25X Academy</a>
+        <p class="muted" style="margin-top:16px;max-width:30ch;color:var(--text-inv-muted)">Helping business owners and professionals put AI to work in their own business.</p>
+        <div class="btn-row" style="margin-top:22px">
+          <a class="btn btn--sm" href={links.workshop}>Join the ₹99 workshop</a>
+        </div>
+      </div>
+      {footerNav.map((col) => (
+        <div>
+          <h4>{col.title}</h4>
+          <ul>{col.items.map((i) => <li><a href={i.href}>{i.label}</a></li>)}</ul>
+        </div>
+      ))}
+    </div>
+    <div class="footer-legal">
+      <p>© {year} 25X Academy, a brand of {site.legalName}, Chennai. <a href="/contact">Business details and grievance officer</a> · <a href={`mailto:${site.email}`}>{site.email}</a></p>
+    </div>
+    <div class="footer-word" aria-hidden="true">25X</div>
+  </div>
+</footer>

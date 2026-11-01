@@ -1,0 +1,28 @@
+---
+// Renders a legal page from Markdown and highlights [FILL]/[DECISION]
+// placeholders so none are missed before launch.
+import Base from './Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import { breadcrumbs } from '../data/schema';
+interface Props { title: string; description: string; path: string; html: string }
+const { title, description, path, html } = Astro.props;
+const body = html
+  .replace(/<h1[^>]*>.*?<\/h1>/s, '')
+  .replace(/\[(FILL|DECISION)[^\]]*\]/g, (m) => `<mark class="ph">${m}</mark>`);
+const crumbs = [{ name: title, href: path }];
+---
+<Base title={title} description={description} schema={[breadcrumbs(crumbs)]}>
+  <header class="legal-head">
+    <div class="container narrow">
+      <Crumbs items={crumbs} />
+      <h1>{title}</h1>
+    </div>
+  </header>
+  <section style="padding-bottom:120px">
+    <div class="container narrow prose" set:html={body} />
+  </section>
+</Base>
+<style>
+  .legal-head { padding: clamp(140px, 18vw, 190px) 0 32px; }
+  .legal-head h1 { font-size: clamp(2.4rem, 5.6vw, 4.2rem); margin-top: 12px; }
+</style>
