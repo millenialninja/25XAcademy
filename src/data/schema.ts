@@ -15,7 +15,7 @@ export function organization() {
     '@id': orgId,
     name: site.name,
     url: site.url,
-    logo: `${site.url}/favicon.svg`,
+    logo: `${site.url}/images/25x-logo.png`,
     description: site.description,
     email: site.email,
     telephone: real(site.phone),
