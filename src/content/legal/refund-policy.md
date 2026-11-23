@@ -1,8 +1,8 @@
 # Refund and Cancellation Policy
 
-**Last updated:** 2 November 2026
+**Last updated:** 23 November 2026
 
-This policy explains when you can get a refund for a 25X Academy program, how to ask for one, and how long it takes. It's part of our [Terms of Service](/terms). Please read it before you pay. Every checkout page links here.
+This policy explains when you can get a refund for a 25X Academy program, how to ask for one, and how long it takes. It's part of our [Terms of Service](/terms). Please read it before you pay. Every checkout page links to our Terms, which include this policy.
 
 25X Academy is a brand of **JOHN V J VENTURES**, D1, Dev Apts, 68, 2nd Main Road, Gandhi Nagar, Adyar, Chennai 600020, Tamil Nadu. Email: hi@25xacademy.com. Phone: +91 98402 14894.
 
