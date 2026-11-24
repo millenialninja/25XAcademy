@@ -1,6 +1,6 @@
 # Refund and Cancellation Policy
 
-**Last updated:** 23 November 2026
+**Last updated:** 24 November 2026
 
 This policy explains when you can get a refund for a 25X Academy program, how to ask for one, and how long it takes. It's part of our [Terms of Service](/terms). Please read it before you pay. Every checkout page links to our Terms, which include this policy.
 
@@ -13,6 +13,7 @@ This policy explains when you can get a refund for a 25X Academy program, how to
 | **3-Day Business Tools Workshop (₹99)** | Not refundable once your seat is confirmed, except for the cases in section 3 |
 | **BuildAlong Hub: Builder** | Full refund if you ask **within 7 days of payment and before your second live session**. After that, not refundable, except for the cases in section 3 |
 | **BuildAlong Hub: Diamond Lifetime** | Same as Builder: full refund within 7 days of payment and before your second live session |
+| **Token and booking payments** (for example, the ₹499 token for the Zero2Expert 30-Day Intensive) | Full refund if you decide not to join. If you join, the token is adjusted in full against your program fee. See section 4 |
 | **Startup Intensive** | As set out in your written agreement |
 | **Corporate training, keynotes, custom work** | As set out in the proposal or agreement |
 
@@ -42,7 +43,19 @@ Whatever the program, we refund in full if:
 
 There is no short deadline for these. Please tell us as soon as you notice.
 
-## 4. How to ask for a refund
+## 4. Token and booking payments
+
+For some programs, you pay a small token before we agree your plan and program fee. One example is the ₹499 token for the Zero2Expert 30-Day Intensive. For these payments:
+
+- **If you join the program,** the full token is adjusted against your program fee.
+- **If you decide not to join,** for any reason, we refund the token in full. Just ask us (see section 5).
+- **If we decide the program isn't the right fit for you,** we refund the token in full without you having to ask.
+
+Once your token has been adjusted against your fee, the refund terms for that program apply to the whole amount you've paid. You'll find them on its checkout page or in your written agreement.
+
+If the checkout page for a token or booking payment states different terms, for example a rule about missing a booked call, those terms apply to that payment.
+
+## 5. How to ask for a refund
 
 Email **hi@25xacademy.com** from the email address you bought with, and include:
 
@@ -51,7 +64,7 @@ Email **hi@25xacademy.com** from the email address you bought with, and include:
 - the payment or order ID (from your confirmation email or invoice),
 - the reason, with screenshots if it's a payment or access problem.
 
-## 5. What happens next
+## 6. What happens next
 
 | Step | Timing |
 |---|---|
@@ -62,19 +75,19 @@ Email **hi@25xacademy.com** from the email address you bought with, and include:
 
 Refunds go back to the payment method you used. For GST purposes, we issue a credit note against your invoice.
 
-## 6. Instalments
+## 7. Instalments
 
 If you're on an instalment plan and your refund is approved, we refund all instalments you've paid and cancel the rest. If you stop using a program outside the refund window, the remaining instalments are still due, as agreed at checkout.
 
-## 7. After a refund
+## 8. After a refund
 
 When a refund is made, your access to that program's sessions, community, recordings and bonuses ends, and you agree to stop using its materials. **Tools you built yourself remain yours.**
 
-## 8. Chargebacks
+## 9. Chargebacks
 
 Please contact us before raising a dispute with your bank. Most problems are fixed fastest by email. If a chargeback is raised, we may pause access to that program until it's resolved, and we may share proof of your purchase and access with the payment provider.
 
-## 9. Complaints
+## 10. Complaints
 
 If you're unhappy with how we handled your request, contact our Grievance Officer:
 
